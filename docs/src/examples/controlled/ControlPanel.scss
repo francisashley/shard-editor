@@ -1,0 +1,16 @@
+.position-input {
+  margin-left: 5px;
+  font-size: 10px;
+  width: 35px;
+  outline: 0;
+  padding: 1px 2px;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-bottom: 1px solid white;
+  transition: background 150ms ease-out, border 150ms ease-out;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5) inset;
+  color: white;
+  &:focus {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}

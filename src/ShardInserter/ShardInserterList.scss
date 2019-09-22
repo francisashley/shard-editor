@@ -1,0 +1,62 @@
+.shard-inserter-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background: #e0e0e0;
+  display: flex;
+  white-space: nowrap;
+  width: 100%;
+
+  &:after {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(238, 238, 238, 0);
+    border-right-color: #e0e0e0;
+    border-width: 4px;
+    margin-top: -4px;
+  }
+
+  &:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(238, 238, 238, 0);
+    border-right-color: #333333;
+    border-width: 4px;
+    margin-top: -4px;
+  }
+
+  li {
+    border-right: thin solid #e0e0e0;
+  }
+
+  li:last-child {
+    border-right: none;
+  }
+
+  li button {
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    outline: 0;
+    padding: 5px 7px 6px 7px;
+    cursor: pointer;
+    vertical-align: bottom;
+    font-size: 13px;
+    transition: backgound 150ms ease-out;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}

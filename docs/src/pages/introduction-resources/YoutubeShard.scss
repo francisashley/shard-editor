@@ -1,0 +1,17 @@
+.shard[data-shard-type="youtube"] .shard-renderer {
+  display: flex;
+  background: #212121;
+}
+.shard[data-shard-type="youtube"] .shard-renderer > iframe {
+  margin: 0 auto;
+}
+
+.shard[data-shard-type="youtube"] .shard-form {
+  display: flex;
+}
+.shard[data-shard-type="youtube"] .shard-form > div {
+  margin-right: 15px;
+}
+.shard[data-shard-type="youtube"] .shard-form label {
+  margin-right: 5px;
+}

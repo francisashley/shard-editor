@@ -1,0 +1,278 @@
+import React from "react";
+import ShardDocsCodeExampleShard from "@fa-repo/shard-docs/dist/shards/code-example-shard";
+import ShardDocsMarkdownShard from "@fa-repo/shard-docs/dist/shards/markdown-shard";
+import ShardEditor from "@fa-repo/shard-editor";
+import NavShard from "@fa-repo/shard-editor/dist/shards/nav";
+import "@fa-repo/shard-editor/dist/shards/nav.css";
+
+/**
+ * Nav shard
+ */
+
+const GetStartedPage = [
+  <ShardDocsMarkdownShard
+    markdown={`
+# NavShard
+Renders a navigation menu.
+
+#### Preview
+`}
+  />,
+  <ShardDocsCodeExampleShard className="markdown-shard-code-example">
+    <ShardEditor
+      editable
+      source={[
+        {
+          id: 0,
+          type: "nav",
+          items: [
+            { type: "link", text: "Gear", link: "/gear" },
+            { type: "symlink", id: 12 },
+            { type: "link", text: "Accomodation", link: "/accomodation", active: true },
+            { type: "divider", text: " | " },
+            { type: "external", text: "Resources", link: "https://en.wikipedia.org" }
+          ],
+          symlinks: [
+            { id: 0, text: "Itinerary", link: "/itinerary" },
+            { id: 1, text: "Gear", link: "/gear" }
+          ]
+        }
+      ]}
+      shards={[
+        { type: "nav", shard: NavShard, builder: ({ id, type }) => ({ id, type, items: [] }) }
+      ]}
+      inserterList={[{ type: "nav", label: "Nav" }]}
+    />
+  </ShardDocsCodeExampleShard>,
+
+  <ShardDocsMarkdownShard
+    markdown={`
+#### Import
+\`\`\`jsx
+import NavShard from "@fa-repo/shard-editor/dist/shards/nav";
+import "@fa-repo/shard-editor/dist/shards/nav.css";
+\`\`\`
+
+#### Input schema
+
+| Name      | Type   | Required  | Description                                           |
+|-----------|--------|-----------|-------------------------------------------------------|
+| id         | string/number | required | A unique id is required for internals to keep track of state.  |
+| type	    | string | required  | Set to "nav".                                          |
+| items     |	array	 | required  | An array of items that make up the shard. Items are objects that render a link, external link, symbolic link or divider. Each are described further down.|
+| renderers | object | sometimes | 	Renderers allow you to override each items default renderer. This may come in useful for example if you wanted to use a ReactRouter link instead of a regular anchor somewhere. Simply add a stateless function to the renderers object with the key set to type of item you want to override. Each renderer is then fed the item via the item prop and it is up to you how you want to render the data. An example is show further down. |
+| symlinks  | array  | sometimes | An array that serves the \`symlink\` item, containing a whitelisted array of pages that the user can pick from. |
+| symlinks[].id  | array  | required | \`id\` matches symlink item to an endpoint contained in this array. |
+| symlinks[].title  | string  | required | Rendered item title. |
+| symlinks[].link  | string  | required | Rendered item link. |
+
+#### Source code example
+
+\`\`\`jsx
+import React from "react";
+import ReactDOM from "react-dom";
+
+import ShardEditor from "@fa-repo/shard-editor";
+import "@fa-repo/shard-editor";
+
+import NavShard from "@fa-repo/shard-editor/dist/shards/nav";
+import "@fa-repo/shard-editor/dist/shards/nav.css";
+
+const source = [
+  {
+    id: 0,
+    type: "nav",
+    items: [
+      { type: "link", text: "Gear", link: "/gear" },
+      { type: "symlink", id: 0 },
+      { type: "link", text: "Accomodation", link: "/accomodation", active: true },
+      { type: "divider", text: " | " },
+      { type: "external", text: "Resources", link: "https://en.wikipedia.org" }
+    ],
+    symlinks: [{ id: 0, text: "Itinerary", link: "/itinerary" }]
+  }
+];
+
+const shards = [
+  {
+    type: "nav",
+    shard: NavShard,
+    builder: ({ id, type }) => ({
+      id,
+      type,
+      items: [],
+      symlinks: []
+    })
+  }
+]
+
+const inserterList = [
+  { type: "nav", label: "Nav" }
+];
+
+ReactDOM.render(
+  <ShardEditor
+    source={source}
+    shards={shards}
+    inserterList={inserterList}
+    editable
+  />,
+  root
+);
+\`\`\`
+
+#### Example with custom item renderers
+`}
+  />,
+
+  <ShardDocsCodeExampleShard
+    className="markdown-shard-code-example"
+    sourceCode={`
+import React from "react";
+import ReactDOM from "react-dom";
+
+import ShardEditor from "@fa-repo/shard-editor";
+import "@fa-repo/shard-editor";
+
+import NavShard from "@fa-repo/shard-editor/dist/shards/nav";
+import "@fa-repo/shard-editor/dist/shards/nav.css";
+
+const source = [
+  {
+    id: 0,
+    type: "nav",
+    items: [{ type: "link", text: "Gear", link: "/gear" }],
+    renderers: {
+      link: ({ item }) => {
+        return (
+          <div style={{ background: "red" }}>
+            <a style={{ color: "gold", padding: "0 10px" }} href={item.link}>
+              {item.text}
+            </a>
+          </div>
+        );
+      }
+    }
+  }
+];
+
+const shards = [
+  { type: "nav", shard: NavShard }
+];
+
+ReactDOM.render(<ShardEditor source={source} shards={shards} />, root);
+`}
+  >
+    <ShardEditor
+      source={[
+        {
+          id: 0,
+          type: "nav",
+          items: [{ type: "link", text: "Gear", link: "/gear" }],
+          renderers: {
+            link: ({ item }) => {
+              return (
+                <div style={{ background: "red" }}>
+                  <a style={{ color: "gold", padding: "10px" }} href={item.link}>
+                    {item.text}
+                  </a>
+                </div>
+              );
+            }
+          }
+        }
+      ]}
+      shards={[{ type: "nav", shard: NavShard }]}
+    />
+  </ShardDocsCodeExampleShard>,
+  <ShardDocsMarkdownShard
+    markdown={`
+## Link item
+Renders an anchor.
+
+\`\`\`jsx
+const source = [
+  {
+    id: 0,
+    type: "nav",
+    items: [
+      { type: "link", text: "Gear", link: "/gear" }
+    ],
+  }
+];
+\`\`\`
+
+| Name      | Type   | Required  | Description                                             |
+|-----------|--------|-----------|---------------------------------------------------------|
+| type      | string | required  | Set to "link".                                           |
+| text	    | string | required  | Link text.                                               |
+| link      |	strin	 | required  | Link target.                                             |
+| active    |	boolean | sometimes | Adds .active class.                                     |
+
+## Symbolic link item
+Symlink is different to \`link\` in that users are offered a whitelisted selection of pages (from the symlinks array) to pick from instead of raw input fields. Objects in the symlinks array use the \`link\` schema.
+
+\`\`\`jsx
+const source = [
+  {
+    id: 0,
+    type: "nav",
+    items: [
+      { type: "symlink", id: 0 },
+    ],
+    symlinks: [{ id: 0, text: "Itinerary", link: "/itinerary" }]
+  }
+];
+\`\`\`
+
+| Name      | Type   | Required  | Description                                                     |
+|-----------|--------|-----------|-----------------------------------------------------------------|
+| type      | string | required  | Set to "symlink".                                               |
+| id	      | string/number | required  | A reference to an object in the symlinks array.          |
+| active	    | boolean | Sometimes  | Renders as plain text if active.                            |
+
+## External link item
+Renders a link that opens a new tab.
+
+\`\`\`jsx
+const source = [
+  {
+    id: 0,
+    type: "nav",
+    items: [
+      { type: "external", text: "Resources", link: "https://en.wikipedia.org" }
+    ]
+  }
+];
+\`\`\`
+
+| Name      | Type   | Required  | Description                                                     |
+|-----------|--------|-----------|-----------------------------------------------------------------|
+| type      | string | required  | Set to "link".                                                  |
+| text	    | string | required  | Link text.                                                      |
+| link      |	string	 | required  | Link target.                                                  |
+| active    |	boolean | sometimes | Renders as plain text if this value is true.                   |
+
+## Divider item
+Renders a divider.
+
+\`\`\`jsx
+const source = [
+  {
+    id: 0,
+    type: "nav",
+    items: [
+      { type: "divider", text: " | " },
+    ]
+  }
+];
+\`\`\`
+
+| Name      | Type   | Required  | Description                                                     |
+|-----------|--------|-----------|-----------------------------------------------------------------|
+| type      | string | required  | Set to "divider".                                               |
+| text	    | string | required  | Any string you want.                                            |
+`}
+  />
+];
+export default GetStartedPage;

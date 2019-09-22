@@ -1,0 +1,59 @@
+.controlled-example {
+  .control-bar {
+    box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05), 0 15px 40px rgba(166, 173, 201, 0.2),
+      0 1px 5px rgba(0, 0, 0, 0.05);
+    background: #673ab6;
+    color: white;
+    margin: 20px 0 -10px 0;
+    overflow-x: auto;
+  }
+  .control-bar-inner {
+    display: flex;
+    white-space: nowrap;
+  }
+  .control-bar .column {
+    border-right: thin solid;
+    display: flex;
+    flex-direction: column;
+    &:last-child {
+      border-right: none;
+      flex: 1;
+    }
+  }
+  .control-bar .column h3 {
+    padding: 5px 10px;
+    margin: 0;
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: thin solid;
+  }
+  .control-bar .column button {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 7px 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-bottom: thin solid white;
+    text-align: left;
+    transition: background 150ms ease-out;
+    font-size: 12px;
+    outline: 0;
+    user-select: none;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    &:active {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  }
+}
