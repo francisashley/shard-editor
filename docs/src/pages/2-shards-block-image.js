@@ -25,8 +25,8 @@ Renders a block image.
         {
           id: 0,
           type: "block-image",
-          image: "/images/fruit-veg.jpg",
-          placeholder: "/images/fruit-veg-placeholder.jpg",
+          image: "images/fruit-veg.jpg",
+          placeholder: "images/fruit-veg-placeholder.jpg",
           aspectRatio: { width: 1824, height: 746 }
         }
       ]}
@@ -36,8 +36,8 @@ Renders a block image.
           shard: BlockImageShard,
           builder: ({ type }) => ({
             type,
-            image: "/images/fruit-veg.jpg",
-            placeholder: "/images/fruit-veg.jpg",
+            image: "images/fruit-veg.jpg",
+            placeholder: "images/fruit-veg.jpg",
             aspectRatio: { width: 1824, height: 746 }
           })
         }
@@ -61,8 +61,8 @@ const source = [
   {
     id: 0,
     type: "block-image",
-    image: "/images/fruit-veg.jpg",
-    placeholder: "/images/fruit-veg-placeholder.jpg",
+    image: "images/fruit-veg.jpg",
+    placeholder: "images/fruit-veg-placeholder.jpg",
     aspectRatio: { width: 1824, height: 746 }
   }
 ];
@@ -94,8 +94,8 @@ const source = [
   {
     id: 0,
     type: "block-image",
-    image: "/images/fruit-veg.jpg",
-    placeholder: "/images/fruit-veg-placeholder.jpg",
+    image: "images/fruit-veg.jpg",
+    placeholder: "images/fruit-veg-placeholder.jpg",
     aspectRatio: { width: 1824, height: 746 }
   }
 ];

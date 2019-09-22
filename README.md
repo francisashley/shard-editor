@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Shard Editor</h1>
   <p>An engine for presenting content your way.</p>
-  <a href="#">Read The Docs</a>
+  <a href="https://fa-repo.github.io/shard-editor/#/get-started">Read The Docs</a>
 </div>
 
 <hr />
