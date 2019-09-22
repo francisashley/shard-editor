@@ -2,8 +2,8 @@
   {
     "id": 0,
     "type": "block-image",
-    "image": "/images/fruit-veg.jpg",
-    "placeholder": "/images/fruit-veg.jpg",
+    "image": "images/fruit-veg.jpg",
+    "placeholder": "images/fruit-veg.jpg",
     "aspectRatio": {
       "width": 770,
       "height": 315

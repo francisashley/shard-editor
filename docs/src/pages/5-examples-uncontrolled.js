@@ -8,7 +8,11 @@ import Example from "../examples/uncontrolled";
 const UncontrolledExample = props => {
   return (
     <>
-      <a href="/docs/src/examples/uncontrolled" target="_blank" rel="noopener">
+      <a
+        href="https://github.com/fa-repo/shard-editor/tree/master/docs/src/examples/uncontrolled"
+        target="_blank"
+        rel="noopener"
+      >
         Source code
       </a>
       <Example />
