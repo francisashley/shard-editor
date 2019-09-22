@@ -1,0 +1,57 @@
+.shard-editor .shard[data-shard-type="blog-header"] {
+  .shard-renderer {
+    border-bottom: thin solid #eaecef;
+    padding: 10px 20px;
+    background: white;
+    font-size: 14px;
+  }
+
+  a {
+    color: #0264df;
+  }
+
+  .blog-header-shard-title {
+    line-height: 1.2;
+    margin: 12px 0;
+    cursor: text;
+  }
+
+  .blog-header-shard-meta {
+    margin: 0 0 5px 0;
+    font-weight: 500;
+    cursor: text;
+  }
+
+  .blog-header-shard-meta {
+    padding: 0;
+    list-style-type: none;
+
+    .blog-header-shard-author,
+    .blog-header-shard-date,
+    .blog-header-shard-tags {
+      display: inline;
+    }
+
+    .blog-header-shard-date:not(:first-child):before {
+      content: ", ";
+    }
+
+    .blog-header-shard-tags:not(:first-child):before {
+      content: " | ";
+      margin: 0 4px 0 4px;
+    }
+  }
+
+  .blog-header-shard-tags ul {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .blog-header-shard-tags ul li {
+    display: inline-block;
+    font-weight: 400;
+    margin-right: 5px;
+  }
+}

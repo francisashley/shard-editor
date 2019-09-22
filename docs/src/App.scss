@@ -1,0 +1,30 @@
+.markdown-shard-code-example > div {
+  padding: 45px !important;
+  background: darkgrey;
+}
+
+.shard-docs-sidebar {
+  .shard-docs-sidebar-header {
+    margin: 15px 15px 20px 0;
+  }
+  .shard-docs-sidebar-header .shard-docs-sidebar-heading {
+    padding: 3px 20px;
+  }
+  .shard-docs-sidebar-description {
+    margin: 0 0 20px 0;
+    padding: 0 20px;
+  }
+  .shard-docs-sidebar-menu h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f5f5f5;
+    text-transform: uppercase;
+  }
+  .shard-docs-sidebar-menu ul {
+    margin: 0 0 25px 0;
+    padding-left: 20px;
+  }
+  .shard-docs-sidebar-menu li {
+    margin: 0 0 7px 0;
+  }
+}

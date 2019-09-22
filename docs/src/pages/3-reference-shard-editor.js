@@ -1,0 +1,102 @@
+import React from "react";
+import ShardDocsMarkdownShard from "@fa-repo/shard-docs/dist/shards/markdown-shard";
+import "@fa-repo/shard-editor/dist/shards/block-image.css";
+
+/**
+ * ShardEditor reference
+ */
+
+const ShardEditorReferencePage = [
+  <ShardDocsMarkdownShard
+    markdown={`
+# ShardEditor
+
+The component that ties everything together.
+
+#### Import
+\`\`\`jsx
+import ShardEditor from "@fa-repo/shard-editor";
+import "@fa-repo/shard-editor/dist/shard-editor.css";
+\`\`\`
+
+#### ShardEditor properties
+
+
+| Name           | Type     | Description                                             |
+|----------------|----------|---------------------------------------------------------|
+| source         | Array&#60;[SourceObject](#source-object)>    | Each object contains the data of individual shards. |
+| shards         | Array&#60;[ShardObject](#shard-object)>    | Each object contains a Shard to edit/render matched SourceObjects along with config options. |
+| inserterList   | Array&#60;[InserterObject](#source-object)>    | Each object generates an item in a menu that people can use to insert new shards. |
+| editable       | Boolean  | Editable is false by default. Setting to true will turn on the ability to edit and add shards. |
+| getShardEditor | Function | Access internal commands for more advanced control. Described below. |
+| onChange       | Function | onChange is called when shards are created, updated, moved and removed. Described below.|
+
+
+#### ShardEditor prop: getShardEditor callback parameters
+| Name                     | Type     | Usage | Description                                        |
+|--------------------------|----------|---------|--------------------------------------------------|
+| tools                    | object   |         | Container object.                                |
+| tools.createShard        | function | \`.createShard('markdown',3)\` | Create a shard of type at a chosen index. |
+| tools.openShardEditor    | function | \`.openShardEditor(1)\` | Open shard form at index. |
+| tools.deleteShard        | function | \`.deleteShard(0)\` | Delete shard at index. |
+| tools.moveShard          | function | \`.moveShard(2,4)\` | Move a shard from one index to another index. |
+| tools.undo               | function | \`.undo()\` | Undo changes. |
+| tools.redo               | function | \`.redo()\` | Redo changes. |
+| tools.canUndo            | function | \`.canUndo()\` | Check whether its possible to undo changes. |
+| tools.canRedo            | function | \`.canRedo()\` | Check whether its possible to redo changes. |
+
+#### ShardEditor prop: onChange callback parameters
+| Name           | Type     | Description                                             |
+|----------------|----------|---------------------------------------------------------|
+| source         | Array&#60;[SourceObject](#source-object)>    | The changed \`source\` array. |
+
+
+
+#### Usage example
+
+\`\`\`jsx
+import ShardEditor from "@fa-repo/shard-editor";
+import "@fa-repo/shard-editor/dist/shard-editor.css";
+
+const source = [
+  { type: id: 0, "markdown", markdown: "## Hello world" }
+];
+
+class Component extends React.Component {
+  state = {
+    source
+  };
+
+  undo = () => this.getShardEditor.undo();
+  redo = () => this.getShardEditor.redo();
+
+  render() {
+    return (
+      <>
+        <button onClick={this.undo}>Undo</button>
+        <button onClick={this.redo}>Redo</button>
+
+        <ShardEditor
+          source={source}
+          shards={[
+            {
+              type: 'markdown',
+              shard: MarkdownShard,
+              builder: ({ id, type }) => ({ id, type, markdown: '' })
+            }
+          ]}
+          inserterList={[
+            { type: "markdown", label: "Markdown" }
+          ]}
+          getShardEditor={getShardEditor => (this.getShardEditor = getShardEditor)}
+          editable
+        />
+      </>
+    );
+  }
+}
+\`\`\`
+`}
+  />
+];
+export default ShardEditorReferencePage;

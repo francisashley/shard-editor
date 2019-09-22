@@ -1,0 +1,10 @@
+.shard-inserter {
+  display: flex;
+  position: relative;
+  background: #eeeeee;
+
+  &:hover,
+  &.is-open {
+    opacity: 1 !important;
+  }
+}

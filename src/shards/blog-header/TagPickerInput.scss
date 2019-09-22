@@ -1,0 +1,67 @@
+.blog-header-tag-picker {
+  .react-tagsinput {
+    background: white;
+    display: block;
+    position: relative;
+    border-radius: 2px;
+    padding: 0 5px;
+    max-width: 300px;
+    &--focused {
+      border-color: #3c98fc;
+    }
+  }
+  &.is-empty .react-tagsinput > span {
+    display: block;
+  }
+  .react-tagsinput-tag {
+    display: inline-block;
+    padding-right: 5px;
+    line-height: 19px;
+    font-weight: 600;
+    font-size: 12px;
+    position: relative;
+    color: #333333;
+    &:before {
+      content: "#";
+    }
+  }
+
+  .react-tagsinput-remove {
+    top: 0;
+    right: -3px;
+    cursor: pointer;
+    height: 8px;
+    width: 8px;
+    line-height: 1px;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 0 0 0;
+    display: inline-block;
+    color: black;
+    background: white;
+    position: absolute;
+    box-shadow: 0px 0px 0px 1px black;
+    text-align: center;
+    display: none;
+    &:hover {
+      text-decoration: none !important;
+      color: white;
+      background: #3c98fc;
+    }
+  }
+  .react-tagsinput-tag:hover .react-tagsinput-remove {
+    display: block;
+  }
+
+  .react-tagsinput-tag a::before {
+    content: "×";
+  }
+
+  .react-tagsinput-input {
+    font-size: 12px !important;
+    border: none;
+    outline: 0;
+    width: 61px;
+    padding: 0;
+  }
+}

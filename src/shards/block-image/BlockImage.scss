@@ -1,0 +1,39 @@
+.shard-editor .shard[data-shard-type="block-image"] {
+  .block-image-container {
+    background: #212121;
+    position: relative;
+  }
+  .block-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+
+  .placeholder-icon {
+    color: white;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.block-image-editor {
+  .aspect-ratio-item {
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .aspect-ratio-item .option-label {
+    margin-bottom: 0px;
+  }
+  .aspect-ratio-item .option-input--text {
+    width: 70px;
+  }
+}
