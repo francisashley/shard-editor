@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import BlogHeaderEditor from "./BlogHeaderEditor";
 import { Map } from "immutable";
 
@@ -16,18 +16,25 @@ const sourceObject = Map({
   showAuthor: true
 });
 
-describe("BlogHeaderShardEditor", () => {
-  it("should render without crashing", () => {
-    const wrapper = shallow(<BlogHeaderEditor sourceObject={sourceObject.toObject()} />);
+describe("<BlogHeaderShardEditor />", () => {
+  const mountShardEditor = () => {
+    const onChangeMock = jest.fn();
+
+    const wrapper = mount(
+      <BlogHeaderEditor sourceObject={sourceObject.toObject()} onChange={onChangeMock} />
+    );
+
+    return { wrapper, onChangeMock };
+  };
+
+  it("renders without crashing", () => {
+    const { wrapper } = mountShardEditor();
 
     expect(wrapper.exists()).toEqual(true);
   });
 
-  it("should be able to change title", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change title", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".blog-header-shard-title-input")
@@ -37,11 +44,8 @@ describe("BlogHeaderShardEditor", () => {
     expect(onChangeMock).toBeCalledWith(sourceObject.set("title", "another title").toObject());
   });
 
-  it("should be able to change email", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change email", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".blog-header-shard-email-input")
@@ -51,11 +55,8 @@ describe("BlogHeaderShardEditor", () => {
     expect(onChangeMock).toBeCalledWith(sourceObject.set("email", "another@email.com").toObject());
   });
 
-  it("should be able to change date format", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change date format", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".blog-header-shard-date-format-input")
@@ -65,11 +66,8 @@ describe("BlogHeaderShardEditor", () => {
     expect(onChangeMock).toBeCalledWith(sourceObject.set("dateFormat", "y m d").toObject());
   });
 
-  it("should be able to change author", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change author", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".blog-header-shard-author-input")
@@ -79,22 +77,16 @@ describe("BlogHeaderShardEditor", () => {
     expect(onChangeMock).toBeCalledWith(sourceObject.set("author", "Jason Statham").toObject());
   });
 
-  it("should display the correct author toggle state", () => {
-    const wrapper = mount(<BlogHeaderEditor sourceObject={sourceObject.toObject()} />);
+  it("display author toggle state", () => {
+    const { wrapper } = mountShardEditor();
 
     expect(
-      wrapper
-        .find(".blog-header-shard-author-checkbox")
-        .first()
-        .props().defaultChecked
+      wrapper.find(".blog-header-shard-author-checkbox").first().props().defaultChecked
     ).toEqual(true);
   });
 
-  it("should be able to toggle author checkbox", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can toggle author checkbox", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".blog-header-shard-author-checkbox")
@@ -104,11 +96,8 @@ describe("BlogHeaderShardEditor", () => {
     expect(onChangeMock).toBeCalledWith(sourceObject.set("showAuthor", false).toObject());
   });
 
-  it("should be able to change date", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = shallow(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change date", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".blog-header-shard-date-input")
@@ -118,46 +107,35 @@ describe("BlogHeaderShardEditor", () => {
     expect(onChangeMock).toBeCalledWith(sourceObject.set("date", 2552953600000).toObject());
   });
 
-  it("should display the correct date toggle state", () => {
-    const wrapper = mount(<BlogHeaderEditor sourceObject={sourceObject.toObject()} />);
+  it("displays the correct date toggle state", () => {
+    const { wrapper } = mountShardEditor();
 
     expect(
-      wrapper
-        .find(".blog-header-shard-date-checkbox")
-        .first()
-        .props().defaultChecked
+      wrapper.find(".blog-header-shard-date-checkbox").first().props().defaultChecked
     ).toEqual(true);
   });
 
-  it("should be able to toggle date checkbox", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can toggle date checkbox", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".blog-header-shard-date-checkbox")
       .first()
       .simulate("change", { target: { checked: false } });
-    expect(onChangeMock).toBeCalledWith(sourceObject.set("showDate", false).toObject());
+
+      expect(onChangeMock).toBeCalledWith(sourceObject.set("showDate", false).toObject());
   });
 
-  it("should display the correct tags toggle state", () => {
-    const wrapper = mount(<BlogHeaderEditor sourceObject={sourceObject.toObject()} />);
+  it("display the correct tags toggle state", () => {
+    const { wrapper } = mountShardEditor();
 
     expect(
-      wrapper
-        .find(".blog-header-shard-tags-checkbox")
-        .first()
-        .props().defaultChecked
+      wrapper.find(".blog-header-shard-tags-checkbox").first().props().defaultChecked
     ).toEqual(true);
   });
 
-  it("should be able to toggle tags checkbox", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can  toggle tags checkbox", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".blog-header-shard-tags-checkbox")
@@ -167,11 +145,8 @@ describe("BlogHeaderShardEditor", () => {
     expect(onChangeMock).toBeCalledWith(sourceObject.set("showTags", false).toObject());
   });
 
-  it("should be able to add tags", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can add tags", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper.find(".react-tagsinput-input").simulate("change", { target: { value: "test-tag" } });
     wrapper.find(".react-tagsinput-input").simulate("keydown", { key: 13 });
@@ -181,11 +156,8 @@ describe("BlogHeaderShardEditor", () => {
     );
   });
 
-  it("should be able to remove tags", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlogHeaderEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can remove tags", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find(".react-tagsinput .react-tagsinput-tag")

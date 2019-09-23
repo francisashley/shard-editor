@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import BlockImageEditor from "./BlockImageEditor";
 import { Map } from "immutable";
 
@@ -10,18 +10,25 @@ const sourceObject = Map({
   aspectRatio: { width: 1824, height: 746 }
 });
 
-describe("BlockImageShardEditor", () => {
-  it("should render without crashing", () => {
-    const wrapper = shallow(<BlockImageEditor sourceObject={sourceObject.toObject()} />);
+describe("<BlockImageShardEditor />", () => {
+  const mountShardEditor = () => {
+    const onChangeMock = jest.fn();
+
+    const wrapper = mount(
+      <BlockImageEditor sourceObject={sourceObject.toObject()} onChange={onChangeMock}/>
+    );
+
+    return { wrapper, onChangeMock };
+  };
+
+  it("renders without crashing", () => {
+    const { wrapper } = mountShardEditor();
 
     expect(wrapper.exists()).toEqual(true);
   });
 
-  it("should be able to change image", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlockImageEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change image", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find('input[name="image"]')
@@ -31,11 +38,8 @@ describe("BlockImageShardEditor", () => {
     expect(onChangeMock).toBeCalledWith(sourceObject.set("image", "/some-photo").toObject());
   });
 
-  it("should be able to change placeholder", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlockImageEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change placeholder", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find('input[name="sml-image"]')
@@ -47,11 +51,8 @@ describe("BlockImageShardEditor", () => {
     );
   });
 
-  it("should be able to change aspect ratios height", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlockImageEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change aspect ratios height", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find('input[name="aspect-ratio-height"]')
@@ -63,11 +64,8 @@ describe("BlockImageShardEditor", () => {
     );
   });
 
-  it("should be able to change aspect ratios width", () => {
-    const onChangeMock = jest.fn();
-    const wrapper = mount(
-      <BlockImageEditor onChange={onChangeMock} sourceObject={sourceObject.toObject()} />
-    );
+  it("can change aspect ratios width", () => {
+    const { wrapper, onChangeMock } = mountShardEditor();
 
     wrapper
       .find('input[name="aspect-ratio-width"]')

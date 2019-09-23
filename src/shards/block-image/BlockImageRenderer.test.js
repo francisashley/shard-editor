@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import BlockImageRenderer from "./BlockImageRenderer";
 import { Map } from "immutable";
 
@@ -10,27 +10,29 @@ const sourceObject = Map({
   aspectRatio: { width: 1824, height: 746 }
 });
 
-describe("BlockImageShardRenderer", () => {
-  it("should render without crashing", () => {
-    const wrapper = shallow(<BlockImageRenderer sourceObject={sourceObject.toObject()} />);
+describe("<BlockImageShardRenderer />", () => {
+  const mountShardEditor = ({ sourceObject = {} } = {}) => {
+    return mount(
+      <BlockImageRenderer sourceObject={sourceObject} />
+    );
+  };
+
+  it("renders without crashing", () => {
+    const wrapper = mountShardEditor({ sourceObject: sourceObject.toObject() });
 
     expect(wrapper.exists()).toEqual(true);
   });
 
-  it("renders a placeholder icon if no image or placeholder image provided", () => {
-    const wrapper = mount(
-      <BlockImageRenderer
-        sourceObject={sourceObject.merge({ image: "", placeholder: "" }).toObject()}
-      />
-    );
+  it("renders a placeholder icon if image or placeholder values are empty", () => {
+    const sourceObject2 = sourceObject.merge({ image: "", placeholder: "" }).toObject();
+    const wrapper = mountShardEditor({ sourceObject: sourceObject2 });
 
     expect(wrapper.find(".placeholder-icon").exists()).toEqual(true);
   });
 
   it("renders a placeholder image", () => {
-    const wrapper = mount(
-      <BlockImageRenderer sourceObject={sourceObject.merge({ image: "" }).toObject()} />
-    );
+    const sourceObject2 = sourceObject.merge({ image: "" }).toObject();
+    const wrapper = mountShardEditor({ sourceObject: sourceObject2 });
 
     expect(wrapper.find('img[src="/images/fruit-veg-placeholder.jpg"]').exists()).toEqual(true);
   });
