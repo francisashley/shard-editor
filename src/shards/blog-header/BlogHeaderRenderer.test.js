@@ -1,8 +1,9 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import BlogHeaderRenderer from "./BlogHeaderRenderer";
+import { Map } from "immutable";
 
-const sourceObject = {
+const sourceObject = Map({
   type: "blog-header",
   date: 1552953600000,
   tags: ["health", "confectionary", "fruit", "vegetables"],
@@ -13,57 +14,61 @@ const sourceObject = {
   showDate: true,
   showTags: true,
   showAuthor: true
-};
+});
 
-describe("BlogHeaderShard renderer", () => {
-  it("should render without crashing", () => {
-    const wrapper = shallow(<BlogHeaderRenderer sourceObject={sourceObject} />);
+describe("<BlogHeaderShard renderer />", () => {
+  const mountShardRenderer = ({ sourceObject = {} } = {}) => {
+    return mount(
+      <BlogHeaderRenderer sourceObject={sourceObject} />
+    );
+  };
+
+  it("renders without crashing", () => {
+    const wrapper = mountShardRenderer({ sourceObject: sourceObject.toObject() });
 
     expect(wrapper.exists()).toEqual(true);
   });
 
-  it("should render author inside an anchor when an email has been provided", () => {
-    const wrapper = shallow(<BlogHeaderRenderer sourceObject={sourceObject} />);
+  it("renders author inside an anchor when an email has been provided", () => {
+    const wrapper = mountShardRenderer({ sourceObject: sourceObject.toObject() });
 
     expect(wrapper.find(".blog-header-shard-author").html()).toEqual(
       '<li class="blog-header-shard-author">by <a href="mailto:js@email.com">John Smith</a></li>'
     );
   });
 
-  it("should render author as plane text when no email has been provided", () => {
-    const wrapper = shallow(<BlogHeaderRenderer sourceObject={{ ...sourceObject, email: null }} />);
+  it("renders author as plane text when no email has been provided", () => {
+    const sourceObject2 = sourceObject.set('email', null);
+    const wrapper = mountShardRenderer({ sourceObject: sourceObject2.toObject() });
 
     expect(wrapper.find(".blog-header-shard-author").html()).toEqual(
       '<li class="blog-header-shard-author">by John Smith</li>'
     );
   });
 
-  it("should render date in correct format", () => {
-    const wrapper = shallow(<BlogHeaderRenderer sourceObject={sourceObject} />);
+  it("renders date in correct format", () => {
+    const wrapper = mountShardRenderer({ sourceObject: sourceObject.toObject() });
 
     expect(wrapper.find(".blog-header-shard-date").text()).toEqual("19 Mar 2019");
   });
 
-  it("should not render author when `showAuthor` is false", () => {
-    const wrapper = shallow(
-      <BlogHeaderRenderer sourceObject={{ ...sourceObject, showAuthor: false }} />
-    );
+  it("does not render author when `showAuthor` is false", () => {
+    const sourceObject2 = sourceObject.set('showAuthor', false);
+    const wrapper = mountShardRenderer({ sourceObject: sourceObject2.toObject() });
 
     expect(wrapper.find(".blog-header-shard-author").exists()).toEqual(false);
   });
 
-  it("should not render date when `showDate` is false", () => {
-    const wrapper = shallow(
-      <BlogHeaderRenderer sourceObject={{ ...sourceObject, showDate: false }} />
-    );
+  it("does not render date when `showDate` is false", () => {
+    const sourceObject2 = sourceObject.set('showDate', false);
+    const wrapper = mountShardRenderer({ sourceObject: sourceObject2.toObject() });
 
     expect(wrapper.find(".blog-header-shard-date").exists()).toEqual(false);
   });
 
-  it("should not render tags when `showTags` is false", () => {
-    const wrapper = shallow(
-      <BlogHeaderRenderer sourceObject={{ ...sourceObject, showTags: false }} />
-    );
+  it("does not render tags when `showTags` is false", () => {
+    const sourceObject2 = sourceObject.set('showTags', false);
+    const wrapper = mountShardRenderer({ sourceObject: sourceObject2.toObject() });
 
     expect(wrapper.find(".blog-header-shard-tags").exists()).toEqual(false);
   });

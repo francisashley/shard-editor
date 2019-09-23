@@ -171,10 +171,8 @@ class ShardEditor extends React.Component {
   };
 
   scrollShardIntoView = atIndex => {
-    const shardBoundary = this.ref
-      .querySelectorAll(`section`)
-      [atIndex].querySelector(".shard-scroll-boundary");
-    scrollIntoView(shardBoundary, {
+    const shard = this.ref.querySelectorAll(`section`)[atIndex];
+    scrollIntoView(shard.querySelector(".shard-scroll-boundary"), {
       scrollMode: "if-needed",
       block: "start",
       inline: "nearest",

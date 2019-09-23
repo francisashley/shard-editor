@@ -1,269 +1,152 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import { Map } from "immutable";
 
-import BaseShard from "./BaseShard";
+import BaseShard from "../BaseShard";
 
-const sourceObject = Map({ type: "something", someText: "Hello world" });
+const sourceObject = Map({ type: "title", title: "Hello world" });
 
-describe("BaseShard", () => {
-  it("should render without crashing", () => {
-    const wrapper = shallow(<BaseShard type="something" renderer={() => {}} />);
-
-    expect(wrapper.exists()).toEqual(true);
-  });
-
-  it("should add type prop to the DOM", () => {
-    const wrapper = shallow(<BaseShard type="something" renderer={() => {}} />);
-
-    expect(wrapper.find('section[data-shard-type="something"]').exists()).toEqual(true);
-  });
-
-  it("should render renderer prop", () => {
-    const wrapper = mount(
-      <BaseShard
-        type="something"
-        sourceObject={sourceObject.toJS()}
-        renderer={({ someText }) => <h1>{someText}</h1>}
-      />
-    );
-
-    expect(wrapper.find("renderer h1").text()).toEqual("Hello world");
-  });
-
-  it("editor prop should render", () => {
-    const wrapper = mount(
-      <BaseShard
-        type="something"
-        sourceObject={sourceObject.toJS()}
-        renderer={({ someText }) => <h1>{someText}</h1>}
-        editor={({ sourceObject, change }) => (
-          <div>
-            <label>Some text:</label>
-            <input
-              type="text"
-              value={sourceObject.someText}
-              onChange={e => change({ ...sourceObject, someText: e.target.value })}
-            />
-          </div>
-        )}
-        isEditing
-      />
-    );
-
-    expect(wrapper.find("editor input").exists()).toEqual(true);
-  });
-
-  it("editor prop can update source object", () => {
+describe("<BaseShard />", () => {
+  const mountBaseShard = ({
+    type = "title",
+    includeRenderer = true,
+    includeEditor = false,
+    isEditing = false,
+    editable = false
+  } = {}) => {
     const onChangeMock = jest.fn();
+    const onMoveUpMock = jest.fn();
+    const onMoveDownMock = jest.fn();
+    const onDeleteMock = jest.fn();
+    const onEditMock = jest.fn();
+    const onCancelMock = jest.fn();
+    const onSaveMock = jest.fn();
+
+    const renderer = sourceObject => <h1>{sourceObject.title}</h1>;
+    const editor = ({ sourceObject, change }) => (
+      <>
+        <label>Title:</label>
+        <input
+          value={sourceObject.title}
+          onChange={e => change({ ...sourceObject, title: e.target.value })}
+        />
+      </>
+    );
 
     const wrapper = mount(
       <BaseShard
-        type="something"
+        type={type}
         sourceObject={sourceObject.toJS()}
-        renderer={({ someText }) => <h1>{someText}</h1>}
-        editor={({ sourceObject, change }) => (
-          <div>
-            <label>Some text:</label>
-            <input
-              type="text"
-              value={sourceObject.someText}
-              onChange={e => change({ ...sourceObject, someText: e.target.value })}
-            />
-          </div>
-        )}
-        isEditing
+        renderer={includeRenderer ? renderer : null}
+        editor={includeEditor ? editor : null}
+        isEditing={isEditing}
+        editable={editable}
         onChange={onChangeMock}
+        onMoveUp={onMoveUpMock}
+        onMoveDown={onMoveDownMock}
+        onDelete={onDeleteMock}
+        onEdit={onEditMock}
+        onCancel={onCancelMock}
+        onSave={onSaveMock}
       />
     );
 
-    wrapper.find("input").simulate("change", { target: { value: "Hello worlds" } });
+    return {
+      wrapper,
+      onChangeMock,
+      onMoveUpMock,
+      onMoveDownMock,
+      onDeleteMock,
+      onEditMock,
+      onCancelMock,
+      onSaveMock
+    };
+  };
 
-    expect(wrapper.find("renderer h1").text()).toEqual("Hello worlds");
+  it("renders renderer", () => {
+    const { wrapper } = mountBaseShard();
+
+    expect(wrapper.find("renderer").contains(<h1>Hello world</h1>)).toBe(true);
   });
 
-  describe("internals", () => {
-    it("should display action menu when editable prop is true", () => {
-      const wrapper = mount(
-        <BaseShard
-          type="something"
-          sourceObject={sourceObject.toJS()}
-          renderer={({ someText }) => <h1>{someText}</h1>}
-          editable
-        />
-      );
+  it("renders editor", () => {
+    const { wrapper } = mountBaseShard({ includeEditor: true, isEditing: true });
 
-      expect(wrapper.find("ShardActions").exists()).toEqual(true);
-    });
+    expect(wrapper.find("editor").contains(<label>Title:</label>)).toBe(true);
+    expect(wrapper.find("editor").containsMatchingElement(<input />)).toBe(true);
+  });
 
-    it("should call onMoveUp when up button on ActionMenu is clicked", () => {
-      const onMoveUp = jest.fn();
+  it("adds type to DOM as data-shard-type", () => {
+    const { wrapper } = mountBaseShard();
 
-      const wrapper = mount(
-        <BaseShard
-          type="something"
-          sourceObject={sourceObject.toJS()}
-          renderer={({ someText }) => <h1>{someText}</h1>}
-          editor={({ sourceObject, change }) => (
-            <div>
-              <label>Some text:</label>
-              <input
-                type="text"
-                value={sourceObject.someText}
-                onChange={e => change({ ...sourceObject, someText: e.target.value })}
-              />
-            </div>
-          )}
-          editable
-          onMoveUp={onMoveUp}
-        />
-      );
+    expect(wrapper.getDOMNode().getAttribute("data-shard-type")).toEqual("title");
+  });
 
-      wrapper.find("button.move-up").simulate("click");
+  it("updates sourceObject from editor", () => {
+    const { wrapper } = mountBaseShard({ includeEditor: true, isEditing: true });
 
-      expect(onMoveUp.mock.calls.length).toEqual(1);
-    });
+    wrapper.find("input").simulate("change", { target: { value: "Hello galaxy" } });
 
-    it("should call onMoveDown when up button on ActionMenu is clicked", () => {
-      const onMoveDown = jest.fn();
+    expect(wrapper.find("renderer").contains(<h1>Hello galaxy</h1>)).toBe(true);
+  });
 
-      const wrapper = mount(
-        <BaseShard
-          type="something"
-          sourceObject={sourceObject.toJS()}
-          renderer={({ someText }) => <h1>{someText}</h1>}
-          editor={({ sourceObject, change }) => (
-            <div>
-              <label>Some text:</label>
-              <input
-                type="text"
-                value={sourceObject.someText}
-                onChange={e => change({ ...sourceObject, someText: e.target.value })}
-              />
-            </div>
-          )}
-          editable
-          onMoveDown={onMoveDown}
-        />
-      );
+  it("displays ShardActions when editable is true", () => {
+    const { wrapper } = mountBaseShard({ editable: true });
 
-      wrapper.find("button.move-down").simulate("click");
+    expect(wrapper.find("ShardActions").exists()).toEqual(true);
+  });
 
-      expect(onMoveDown.mock.calls.length).toEqual(1);
-    });
+  it("hides ShardActions when editable is false", () => {
+    const { wrapper } = mountBaseShard();
 
-    it("should call onDelete when up button on ActionMenu is clicked", () => {
-      const onDelete = jest.fn();
+    expect(wrapper.find("ShardActions").exists()).toEqual(false);
+  });
 
-      const wrapper = mount(
-        <BaseShard
-          type="something"
-          sourceObject={sourceObject.toJS()}
-          renderer={({ someText }) => <h1>{someText}</h1>}
-          editor={({ sourceObject, change }) => (
-            <div>
-              <label>Some text:</label>
-              <input
-                type="text"
-                value={sourceObject.someText}
-                onChange={e => change({ ...sourceObject, someText: e.target.value })}
-              />
-            </div>
-          )}
-          editable
-          onDelete={onDelete}
-        />
-      );
+  it("triggers onMoveUp from ActionMenu", () => {
+    const { wrapper, onMoveUpMock } = mountBaseShard({ editable: true });
 
-      wrapper.find("button.delete").simulate("click");
+    wrapper.find("ShardActions").prop("onMoveUp")();
 
-      expect(onDelete.mock.calls.length).toEqual(1);
-    });
+    expect(onMoveUpMock.mock.calls.length).toEqual(1);
+  });
 
-    it("should call onEdit when up button on ActionMenu is clicked", () => {
-      const onEdit = jest.fn();
+  it("triggers onMoveDown from ActionMenu", () => {
+    const { wrapper, onMoveDownMock } = mountBaseShard({ editable: true });
 
-      const wrapper = mount(
-        <BaseShard
-          type="something"
-          sourceObject={sourceObject.toJS()}
-          renderer={({ someText }) => <h1>{someText}</h1>}
-          editor={({ sourceObject, change }) => (
-            <div>
-              <label>Some text:</label>
-              <input
-                type="text"
-                value={sourceObject.someText}
-                onChange={e => change({ ...sourceObject, someText: e.target.value })}
-              />
-            </div>
-          )}
-          editable
-          onEdit={onEdit}
-        />
-      );
+    wrapper.find("ShardActions").prop("onMoveDown")();
 
-      wrapper.find("button.edit").simulate("click");
+    expect(onMoveDownMock.mock.calls.length).toEqual(1);
+  });
 
-      expect(onEdit.mock.calls.length).toEqual(1);
-    });
+  it("triggers onDelete from ActionMenu", () => {
+    const { wrapper, onDeleteMock } = mountBaseShard({ editable: true });
 
-    it("should call onCancel when up button on ActionMenu is clicked", () => {
-      const onCancel = jest.fn();
+    wrapper.find("ShardActions").prop("onDelete")();
 
-      const wrapper = mount(
-        <BaseShard
-          type="something"
-          sourceObject={sourceObject.toJS()}
-          renderer={({ someText }) => <h1>{someText}</h1>}
-          editor={({ sourceObject, change }) => (
-            <div>
-              <label>Some text:</label>
-              <input
-                type="text"
-                value={sourceObject.someText}
-                onChange={e => change({ ...sourceObject, someText: e.target.value })}
-              />
-            </div>
-          )}
-          editable
-          isEditing
-          onCancel={onCancel}
-        />
-      );
+    expect(onDeleteMock.mock.calls.length).toEqual(1);
+  });
 
-      wrapper.find("button.cancel").simulate("click");
+  it("triggers onDelete from ActionMenu", () => {
+    const { wrapper, onEditMock } = mountBaseShard({ editable: true });
 
-      expect(onCancel.mock.calls.length).toEqual(1);
-    });
+    wrapper.find("ShardActions").prop("onEdit")();
 
-    it("should call onSave when up button on ActionMenu is clicked", () => {
-      const onSave = jest.fn();
+    expect(onEditMock.mock.calls.length).toEqual(1);
+  });
 
-      const wrapper = mount(
-        <BaseShard
-          type="something"
-          sourceObject={sourceObject.toJS()}
-          renderer={({ someText }) => <h1>{someText}</h1>}
-          editor={({ sourceObject, change }) => (
-            <div>
-              <label>Some text:</label>
-              <input
-                type="text"
-                value={sourceObject.someText}
-                onChange={e => change({ ...sourceObject, someText: e.target.value })}
-              />
-            </div>
-          )}
-          editable
-          isEditing
-          onSave={onSave}
-        />
-      );
+  it("triggers onCancel from ActionMenu", () => {
+    const { wrapper, onCancelMock } = mountBaseShard({ editable: true });
 
-      wrapper.find("button.save").simulate("click");
+    wrapper.find("ShardActions").prop("onCancel")();
 
-      expect(onSave.mock.calls.length).toEqual(1);
-    });
+    expect(onCancelMock.mock.calls.length).toEqual(1);
+  });
+
+  it("triggers onSave from ActionMenu", () => {
+    const { wrapper, onSaveMock } = mountBaseShard({ editable: true });
+
+    wrapper.find("ShardActions").prop("onSave")();
+
+    expect(onSaveMock.mock.calls.length).toEqual(1);
   });
 });

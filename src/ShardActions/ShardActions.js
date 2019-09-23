@@ -22,17 +22,7 @@ const CancelButton = ({ show, ...props }) =>
 const SaveButton = ({ show, ...props }) =>
   show && <button className="save" children={<Tick />} {...props} />;
 
-const ShardActions = ({
-  show,
-  isEditing,
-  onMoveUp,
-  onMoveDown,
-  onDelete,
-  onEdit,
-  onCancel,
-  onSave
-}) => {
-  if (show !== true) return null;
+const ShardActions = ({ isEditing, onMoveUp, onMoveDown, onDelete, onEdit, onCancel, onSave }) => {
   const isViewing = !isEditing;
   return (
     <div className="shard-actions">
@@ -47,7 +37,6 @@ const ShardActions = ({
 };
 
 ShardActions.propTypes = {
-  show: PropTypes.bool,
   isEditing: PropTypes.bool,
   onMoveUp: PropTypes.func,
   onMoveDown: PropTypes.func,
@@ -58,7 +47,6 @@ ShardActions.propTypes = {
 };
 
 ShardActions.defaultProps = {
-  show: true,
   isEditing: false,
   onMoveUp: () => {},
   onMoveDown: () => {},
