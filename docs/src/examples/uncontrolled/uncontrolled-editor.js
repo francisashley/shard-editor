@@ -47,7 +47,7 @@ const shards = [
   { type: "nav", shard: NavShard, builder: ({ id, type }) => ({ id, type, items: [] }) }
 ];
 
-const inserterList = [
+const inserters = [
   { type: "block-image", label: "Block image" },
   { type: "blog-header", label: "Blog header" },
   { type: "markdown", label: "Markdown" },
@@ -58,7 +58,7 @@ class UncontrolledExample extends Component {
   render() {
     return (
       <div>
-        <ShardEditor editable source={source} shards={shards} inserterList={inserterList} />
+        <ShardEditor editable source={source} shards={shards} inserters={inserters} />
       </div>
     );
   }

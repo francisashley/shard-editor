@@ -16,17 +16,17 @@ const source = List([
 
 const shards = [{ type: "markdown", shard: MarkdownShard }];
 
-const inserterList = [{ type: "markdown", label: "Markdown" }];
+const inserters = [{ type: "markdown", label: "Markdown" }];
 
 describe("<ShardEditor />", () => {
-  const mountShardEditor = ({ inserterList = [], shards = [], editable = false } = {}) => {
+  const mountShardEditor = ({ inserters = [], shards = [], editable = false } = {}) => {
     const onChangeMock = jest.fn();
     const getShardEditorMock = jest.fn();
 
     const wrapper = mount(
       <ShardEditor
         source={source.toJS()}
-        inserterList={inserterList}
+        inserters={inserters}
         shards={shards}
         editable={editable}
         getShardEditor={getShardEditorMock}
@@ -59,8 +59,8 @@ describe("<ShardEditor />", () => {
     expect(wrapper.find(".shard-actions").length).toEqual(2);
   });
 
-  it("renders inserter menu when inserterList contains items and editable is true", () => {
-    const { wrapper } = mountShardEditor({ shards, inserterList, editable: true });
+  it("renders inserter menu when inserters contains items and editable is true", () => {
+    const { wrapper } = mountShardEditor({ shards, inserters, editable: true });
 
     expect(wrapper.find(".shard-inserter").length).toEqual(3);
   });
@@ -136,7 +136,7 @@ describe("<ShardEditor />", () => {
   });
 
   it("creates an object containing unique id and shard type when shardInserter calls onInsert", () => {
-    const { wrapper } = mountShardEditor({ shards, inserterList, editable: true });
+    const { wrapper } = mountShardEditor({ shards, inserters, editable: true });
 
     wrapper.find(".shard-inserter-button").first().simulate("click");
     wrapper.find(".shard-inserter-list button").simulate("click");
@@ -151,7 +151,7 @@ describe("<ShardEditor />", () => {
   it("create a transformed object when shardInserter calls onInsert on a shard type with a builder", () => {
     let shards2 = shards;
     shards2[0].builder = ({ id, type }) => ({ id, type, markdown: "" });
-    const { wrapper } = mountShardEditor({ shards: shards2, inserterList, editable: true });
+    const { wrapper } = mountShardEditor({ shards: shards2, inserters, editable: true });
 
     wrapper.find(".shard-inserter-button").first().simulate("click");
     wrapper.find(".shard-inserter-list button").simulate("click");
@@ -290,7 +290,7 @@ describe("<ShardEditor />", () => {
   });
 
   it("calls onChange when shard created", () => {
-    const { wrapper, onChangeMock } = mountShardEditor({ shards, inserterList, editable: true });
+    const { wrapper, onChangeMock } = mountShardEditor({ shards, inserters, editable: true });
 
     wrapper.find(".shard-inserter-button").first().simulate("click");
     wrapper.find(".shard-inserter-list button").simulate("click");
@@ -299,7 +299,7 @@ describe("<ShardEditor />", () => {
   });
 
   it("calls onChange when shard deleted", () => {
-    const { wrapper, onChangeMock } = mountShardEditor({ shards, inserterList, editable: true });
+    const { wrapper, onChangeMock } = mountShardEditor({ shards, inserters, editable: true });
 
     wrapper.find(".shard-actions .delete").first().simulate("click");
 
@@ -307,7 +307,7 @@ describe("<ShardEditor />", () => {
   });
 
   it("calls onChange when shard moved", () => {
-    const { wrapper, onChangeMock } = mountShardEditor({ shards, inserterList, editable: true });
+    const { wrapper, onChangeMock } = mountShardEditor({ shards, inserters, editable: true });
 
     wrapper.find(".shard-actions .move-down").first().simulate("click");
 

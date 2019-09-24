@@ -42,7 +42,7 @@ Renders a block image.
           })
         }
       ]}
-      inserterList={[{ type: "block-image", label: "Block Image" }]}
+      inserters={[{ type: "block-image", label: "Block Image" }]}
       editable
     />
   </ShardDocsCodeExampleShard>,
@@ -114,7 +114,7 @@ const shards = [
   }
 ]
 
-const inserterList = [
+const inserters = [
   { type: "block-image", label: "Block Image" }
 ];
 
@@ -122,7 +122,7 @@ ReactDOM.render(
   <ShardEditor
     source={source}
     shards={shards}
-    inserterList={inserterList}
+    inserters={inserters}
     editable
   />,
   root

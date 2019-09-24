@@ -27,7 +27,7 @@ class ShardEditor extends React.Component {
         builder: PropTypes.func
       })
     ),
-    inserterList: PropTypes.arrayOf(
+    inserters: PropTypes.arrayOf(
       PropTypes.shape({
         type: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired
@@ -41,7 +41,7 @@ class ShardEditor extends React.Component {
 
   static defaultProps = {
     source: [],
-    inserterList: [],
+    inserters: [],
     shards: [],
     editable: false,
     /* Callbacks */
@@ -82,7 +82,7 @@ class ShardEditor extends React.Component {
 
   /* -- Boolean methods -- */
   showInsertors = () => {
-    return this.props.inserterList.length > 0 && this.props.editable;
+    return this.props.inserters.length > 0 && this.props.editable;
   };
 
   /* -- Getter methods -- */
@@ -249,7 +249,7 @@ class ShardEditor extends React.Component {
                 <ShardInserter
                   sourceObject={sourceObject}
                   onInsert={type => this.handleInsertShard(type, index)}
-                  items={this.props.inserterList}
+                  items={this.props.inserters}
                 />
               )}
               <Shard
@@ -268,7 +268,7 @@ class ShardEditor extends React.Component {
                 <ShardInserter
                   sourceObject={sourceObject}
                   onInsert={type => this.handleInsertShard(type, index + 1)}
-                  items={this.props.inserterList}
+                  items={this.props.inserters}
                 />
               )}
             </React.Fragment>
