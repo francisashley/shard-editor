@@ -52,7 +52,7 @@ const MarkdownShard = props => {
   return (
     <BaseShard
       type="markdown"
-      renderer={(sourceObject) => (
+      renderer={({ sourceObject }) => (
         <div dangerouslySetInnerHTML={{ __html: markdownParser.render(sourceObject.markdown) }} />
       )}
       editor={({ sourceObject, wantsToFocus, change }) => {

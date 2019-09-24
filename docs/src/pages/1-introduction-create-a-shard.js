@@ -73,14 +73,17 @@ export default [
     return (
       <BaseShard
         type="youtube"
-        renderer={({ width, height, videoId }) => (
-          <iframe
-            width={width}
-            height={height}
-            src={videoId && "https://www.youtube.com/embed/" + videoId}
-            allowFullScreen
-          />
-        )}
+        renderer={({ sourceObject }) => {
+          const { width, height, videoId } = sourceObject;
+          return (
+            <iframe
+              width={width}
+              height={height}
+              src={videoId && "https://www.youtube.com/embed/" + videoId}
+              allowFullScreen
+            />
+          )
+        }}
         editor={...}
         {...props}
       />
@@ -149,14 +152,17 @@ export default [
     return (
       <BaseShard
         type="youtube"
-        renderer={({ width, height, videoId }) => (
-          <iframe
-            width={width}
-            height={height}
-            src={videoId && "https://www.youtube.com/embed/" + videoId}
-            allowFullScreen
-          />
-        )}
+        renderer={({ sourceObject }) => {
+          const { width, height, videoId } = sourceObject;
+          return (
+            <iframe
+              width={width}
+              height={height}
+              src={videoId && "https://www.youtube.com/embed/" + videoId}
+              allowFullScreen
+            />
+          )
+        }}
         editor={({ sourceObject, change }) => {
           return (
             <>

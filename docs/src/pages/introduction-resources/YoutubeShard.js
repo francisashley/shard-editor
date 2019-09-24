@@ -6,15 +6,18 @@ const VideoShard = props => {
   return (
     <BaseShard
       type="youtube"
-      renderer={({ height = 315, width = 560, videoId = "" }) => (
-        <iframe
-          width={width}
-          height={height}
-          src={videoId && "https://www.youtube.com/embed/" + videoId}
-          allowFullScreen
-        ></iframe>
-      )}
-      editor={({ editor, sourceObject, change }) => {
+      renderer={sourceObject => {
+        const { height = 315, width = 560, videoId = "" } = sourceObject;
+        return (
+          <iframe
+            width={width}
+            height={height}
+            src={videoId && "https://www.youtube.com/embed/" + videoId}
+            allowFullScreen
+          ></iframe>
+        );
+      }}
+      editor={({ sourceObject, change }) => {
         return (
           <>
             <div>

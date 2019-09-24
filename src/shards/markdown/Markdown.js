@@ -15,7 +15,7 @@ const MarkdownShard = props => {
       // Shard type
       type="markdown"
       // Shard renderer
-      renderer={sourceObject => <Renderer sourceObject={sourceObject} />}
+      renderer={({ sourceObject }) => <Renderer sourceObject={sourceObject} />}
       // Shard editor
       editor={({ sourceObject, wantsToFocus, change }) => (
         <Editor

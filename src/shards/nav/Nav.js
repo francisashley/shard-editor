@@ -15,7 +15,7 @@ const NavShard = props => {
       // Shard type
       type="nav"
       // Shard renderer
-      renderer={sourceObject => <Renderer sourceObject={sourceObject} />}
+      renderer={({ sourceObject }) => <Renderer sourceObject={sourceObject} />}
       // Shard editor
       editor={({ sourceObject, wantsToFocus, change }) => (
         <Editor

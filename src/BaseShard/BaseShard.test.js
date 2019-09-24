@@ -22,7 +22,7 @@ describe("<BaseShard />", () => {
     const onCancelMock = jest.fn();
     const onSaveMock = jest.fn();
 
-    const renderer = sourceObject => <h1>{sourceObject.title}</h1>;
+    const renderer = ({sourceObject}) => <h1>{sourceObject.title}</h1>;
     const editor = ({ sourceObject, change }) => (
       <>
         <label>Title:</label>

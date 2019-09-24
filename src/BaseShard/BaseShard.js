@@ -85,7 +85,7 @@ class Shard extends React.Component {
       <section data-shard-type={type} className={className}>
         <div className="shard-scroll-boundary" />
         <div className="shard-renderer">
-          <Renderer {...sourceObject} />
+          <Renderer sourceObject={sourceObject} />
           {editable && (
             <Actions
               isEditing={isEditing}
