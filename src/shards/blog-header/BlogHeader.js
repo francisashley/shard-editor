@@ -17,7 +17,7 @@ const BlogHeaderShard = props => {
       // Shard type
       type="blog-header"
       // Shard renderer
-      renderer={sourceObject => <Renderer sourceObject={sourceObject} />}
+      renderer={({ sourceObject }) => <Renderer sourceObject={sourceObject} />}
       // Shard editor
       editor={({ sourceObject, wantsToFocus, change }) => (
         <Editor

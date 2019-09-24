@@ -40,7 +40,7 @@ const markdownParser = new MarkdownIt("default", {
  * MarkdownRenderer
  */
 
-const MarkdownRenderer = ({ sourceObject, ...props }) => {
+const MarkdownRenderer = ({ sourceObject }) => {
   return (
     <div dangerouslySetInnerHTML={{ __html: markdownParser.render(sourceObject.markdown || "") }} />
   );

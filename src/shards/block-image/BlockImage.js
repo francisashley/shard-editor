@@ -15,7 +15,7 @@ const BlockImageShard = props => {
       // Shard type
       type="block-image"
       // Shard renderer
-      renderer={sourceObject => <Renderer sourceObject={sourceObject} />}
+      renderer={({ sourceObject }) => <Renderer sourceObject={sourceObject} />}
       // Shard editor
       editor={({ sourceObject, wantsToFocus, change }) => (
         <Editor sourceObject={sourceObject} wantsToFocus={wantsToFocus} onChange={change} />
