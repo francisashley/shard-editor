@@ -55,7 +55,7 @@ Renders blog post info.
           })
         }
       ]}
-      inserterList={[{ type: "blog-header", label: "Blog header" }]}
+      inserters={[{ type: "blog-header", label: "Blog header" }]}
     />
   </ShardDocsCodeExampleShard>,
 
@@ -129,7 +129,7 @@ const shards = [
   }
 ]
 
-const inserterList = [
+const inserters = [
   { type: "blog-header", label: "Blog Header" }
 ];
 
@@ -137,7 +137,7 @@ ReactDOM.render(
   <ShardEditor
     source={source}
     shards={shards}
-    inserterList={inserterList}
+    inserters={inserters}
     editable
   />,
   root

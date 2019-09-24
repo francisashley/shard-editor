@@ -51,7 +51,7 @@ const shards = [
   }
 ];
 
-const inserterList = [
+const inserters = [
   { type: "block-image", label: "Block image" },
   { type: "blog-header", label: "Blog header" },
   { type: "markdown", label: "Markdown" },
@@ -118,7 +118,7 @@ class ControlledExample extends Component {
           getShardEditor={shardEditor => (this.shardEditor = shardEditor)}
           source={source}
           shards={shards}
-          inserterList={inserterList}
+          inserters={inserters}
           onChange={source => this.setState({ totalShards: source.length })}
         />
       </div>

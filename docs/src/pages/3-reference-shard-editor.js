@@ -26,7 +26,7 @@ import "@fa-repo/shard-editor/dist/shard-editor.css";
 |----------------|----------|---------------------------------------------------------|
 | source         | Array&#60;[SourceObject](#source-object)>    | Each object contains the data of individual shards. |
 | shards         | Array&#60;[ShardObject](#shard-object)>    | Each object contains a Shard to edit/render matched SourceObjects along with config options. |
-| inserterList   | Array&#60;[InserterObject](#source-object)>    | Each object generates an item in a menu that people can use to insert new shards. |
+| inserters   | Array&#60;[InserterObject](#source-object)>    | Each object generates an item in a menu that people can use to insert new shards. |
 | editable       | Boolean  | Editable is false by default. Setting to true will turn on the ability to edit and add shards. |
 | getShardEditor | Function | Access internal commands for more advanced control. Described below. |
 | onChange       | Function | onChange is called when shards are created, updated, moved and removed. Described below.|
@@ -85,7 +85,7 @@ class Component extends React.Component {
               builder: ({ id, type }) => ({ id, type, markdown: '' })
             }
           ]}
-          inserterList={[
+          inserters={[
             { type: "markdown", label: "Markdown" }
           ]}
           getShardEditor={getShardEditor => (this.getShardEditor = getShardEditor)}

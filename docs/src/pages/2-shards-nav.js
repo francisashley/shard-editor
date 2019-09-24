@@ -41,7 +41,7 @@ Renders a navigation menu.
       shards={[
         { type: "nav", shard: NavShard, builder: ({ id, type }) => ({ id, type, items: [] }) }
       ]}
-      inserterList={[{ type: "nav", label: "Nav" }]}
+      inserters={[{ type: "nav", label: "Nav" }]}
     />
   </ShardDocsCodeExampleShard>,
 
@@ -106,7 +106,7 @@ const shards = [
   }
 ]
 
-const inserterList = [
+const inserters = [
   { type: "nav", label: "Nav" }
 ];
 
@@ -114,7 +114,7 @@ ReactDOM.render(
   <ShardEditor
     source={source}
     shards={shards}
-    inserterList={inserterList}
+    inserters={inserters}
     editable
   />,
   root

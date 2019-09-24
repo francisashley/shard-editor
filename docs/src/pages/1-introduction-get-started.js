@@ -138,10 +138,10 @@ const shards = [
 
 #### Inserter menu
 
-To keep things simple, we'll use the inserter menu to add shards. All we need to do is populate the \`inserterList\` prop with an array of objects containing \`type\` to indicate the type of shard to create and \`label\` to let us know what we're clicking on.
+To keep things simple, we'll use the inserter menu to add shards. All we need to do is populate the \`inserters\` prop with an array of objects containing \`type\` to indicate the type of shard to create and \`label\` to let us know what we're clicking on.
 
 \`\`\`jsx
-const inserterList = [
+const inserters = [
   { type: "markdown", label: "Markdown" }
 ]
 \`\`\`
@@ -170,7 +170,7 @@ const shards = [
   }
 ];
 
-const inserterList = [
+const inserters = [
   { type: "markdown", label: "Markdown" }
 ]
 
@@ -178,7 +178,7 @@ ReactDOM.render(
   <ShardEditor
     source={source}
     shards={shards}
-    inserterList={inserterList}
+    inserters={inserters}
     editable
   />,
   root
@@ -198,7 +198,7 @@ and voilà
             builder: ({ id, type }) => ({ id, type, markdown: "" })
           }
         ]}
-        inserterList={[{ type: "markdown", label: "Markdown" }]}
+        inserters={[{ type: "markdown", label: "Markdown" }]}
         editable
       />
     </CodeExampleShard>

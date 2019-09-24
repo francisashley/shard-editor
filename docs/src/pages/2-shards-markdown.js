@@ -35,7 +35,7 @@ Infantemque valido non quique mora Lemnos? Non *pulsa greges* bella mihi forma, 
           builder: ({ id, type }) => ({ id, type, markdown: "" })
         }
       ]}
-      inserterList={[{ type: "markdown", label: "Markdown" }]}
+      inserters={[{ type: "markdown", label: "Markdown" }]}
     />
   </ShardDocsCodeExampleShard>,
   <ShardDocsMarkdownShard
@@ -86,7 +86,7 @@ const shards = [
   }
 ]
 
-const inserterList = [
+const inserters = [
   { type: "markdown", label: "Markdown" }
 ];
 
@@ -94,7 +94,7 @@ ReactDOM.render(
   <ShardEditor
     source={source}
     shards={shards}
-    inserterList={inserterList}
+    inserters={inserters}
     editable
   />,
   root
