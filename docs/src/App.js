@@ -41,7 +41,7 @@ const App = props => (
     <ShardDocs
       title="ShardEditor docs"
       description="An extendable engine for presenting your content your way."
-      tree={[
+      source={[
         // { page: "Scratch pad", composition: scratchPad },
         {
           group: "Introduction",
