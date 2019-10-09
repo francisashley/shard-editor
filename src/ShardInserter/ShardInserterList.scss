@@ -1,7 +1,7 @@
 .shard-inserter-list {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   background: #e0e0e0;
   display: flex;
   white-space: nowrap;
@@ -39,6 +39,7 @@
 
   li {
     border-right: thin solid #e0e0e0;
+    margin: 0 !important;
   }
 
   li:last-child {

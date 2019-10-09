@@ -1,32 +1,39 @@
-import React from "react";
-import ShardDocsCodeExampleShard from "@fa-repo/shard-docs/dist/shards/code-example-shard";
+import CodeSample from "@fa-repo/shard-docs/dist/shards/code-sample";
 import BlogHeaderShard from "@fa-repo/shard-editor/dist/shards/blog-header";
-import "@fa-repo/shard-editor/dist/shards/blog-header.css";
-import ShardDocsMarkdownShard from "@fa-repo/shard-docs/dist/shards/markdown-shard";
 import ShardEditor from "@fa-repo/shard-editor";
 
-/**
- * Blog header shard
- */
-
-const GetStartedPage = [
-  <ShardDocsMarkdownShard
-    markdown={`
 # BlogHeaderShard
 Renders blog post info.
 
 #### Preview
-`}
-  />,
-  <ShardDocsCodeExampleShard className="markdown-shard-code-example">
-    <ShardEditor
-      editable
-      source={[
-        {
-          id: 0,
-          date: 1552953600000,
+
+<CodeSample className="markdown-shard-code-example">
+  <ShardEditor
+    editable
+    source={[
+      {
+        id: 0,
+        date: 1552953600000,
+        tags: ["languages", "japanese"],
+        type: "blog-header",
+        title: "Studying Japanese in France",
+        author: "John Smith",
+        showDate: true,
+        showTags: true,
+        dateFormat: "DD MMM YYYY",
+        showAuthor: true,
+        email: "webmaster@website.com"
+      }
+    ]}
+    shards={[
+      {
+        type: "blog-header",
+        shard: BlogHeaderShard,
+        builder: ({ id, type }) => ({
+          id,
+          type,
+          date: Date.now(),
           tags: ["languages", "japanese"],
-          type: "blog-header",
           title: "Studying Japanese in France",
           author: "John Smith",
           showDate: true,
@@ -34,38 +41,18 @@ Renders blog post info.
           dateFormat: "DD MMM YYYY",
           showAuthor: true,
           email: "webmaster@website.com"
-        }
-      ]}
-      shards={[
-        {
-          type: "blog-header",
-          shard: BlogHeaderShard,
-          builder: ({ id, type }) => ({
-            id,
-            type,
-            date: Date.now(),
-            tags: ["languages", "japanese"],
-            title: "Studying Japanese in France",
-            author: "John Smith",
-            showDate: true,
-            showTags: true,
-            dateFormat: "DD MMM YYYY",
-            showAuthor: true,
-            email: "webmaster@website.com"
-          })
-        }
-      ]}
-      inserters={[{ type: "blog-header", label: "Blog header" }]}
-    />
-  </ShardDocsCodeExampleShard>,
+        })
+      }
+    ]}
+    inserters={[{ type: "blog-header", label: "Blog header" }]}
+  />
+</CodeSample>
 
-  <ShardDocsMarkdownShard
-    markdown={`
 #### Import
-\`\`\`jsx
+```jsx
 import BlogHeaderShard from "@fa-repo/shard-editor/dist/shards/blog-header";
 import "@fa-repo/shard-editor/dist/shards/blog-header.css";
-\`\`\`
+```
 
 #### Input schema
 
@@ -83,7 +70,7 @@ import "@fa-repo/shard-editor/dist/shards/blog-header.css";
 | showTags   | boolean | required	| Choose whether to display tags. Defaults to \`true\`.               |
 
 #### Source code example
-\`\`\`jsx
+```jsx
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -142,8 +129,4 @@ ReactDOM.render(
   />,
   root
 );
-\`\`\`
-`}
-  />
-];
-export default GetStartedPage;
+```

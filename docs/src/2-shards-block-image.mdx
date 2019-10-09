@@ -1,62 +1,50 @@
-import React from "react";
 import ShardEditor from "@fa-repo/shard-editor";
-import ShardDocsCodeExampleShard from "@fa-repo/shard-docs/dist/shards/code-example-shard";
-import ShardDocsMarkdownShard from "@fa-repo/shard-docs/dist/shards/markdown-shard";
+import CodeSample from "@fa-repo/shard-docs/dist/shards/code-sample";
 import BlockImageShard from "@fa-repo/shard-editor/dist/shards/block-image";
-import "@fa-repo/shard-editor/dist/shards/block-image.css";
-import "./2-shards-block-image.scss";
 
-/**
- * Block image shard
- */
-
-const GetStartedPage = [
-  <ShardDocsMarkdownShard
-    markdown={`
 # BlockImageShard
 Renders a block image.
 
 #### Preview
-`}
-  />,
-  <ShardDocsCodeExampleShard className="markdown-shard-code-example">
-    <ShardEditor
-      source={[
-        {
-          id: 0,
-          type: "block-image",
+
+<CodeSample className="markdown-shard-code-example">
+  <ShardEditor
+    source={[
+      {
+        id: 0,
+        type: "block-image",
+        image: "images/fruit-veg.jpg",
+        placeholder: "images/fruit-veg-placeholder.jpg",
+        aspectRatio: { width: 1824, height: 746 }
+      }
+    ]}
+    shards={[
+      {
+        type: "block-image",
+        shard: BlockImageShard,
+        builder: ({ type }) => ({
+          type,
           image: "images/fruit-veg.jpg",
-          placeholder: "images/fruit-veg-placeholder.jpg",
+          placeholder: "images/fruit-veg.jpg",
           aspectRatio: { width: 1824, height: 746 }
-        }
-      ]}
-      shards={[
-        {
-          type: "block-image",
-          shard: BlockImageShard,
-          builder: ({ type }) => ({
-            type,
-            image: "images/fruit-veg.jpg",
-            placeholder: "images/fruit-veg.jpg",
-            aspectRatio: { width: 1824, height: 746 }
-          })
-        }
-      ]}
-      inserters={[{ type: "block-image", label: "Block Image" }]}
-      editable
-    />
-  </ShardDocsCodeExampleShard>,
-  <ShardDocsMarkdownShard
-    markdown={`
+        })
+      }
+    ]}
+    inserters={[{ type: "block-image", label: "Block Image" }]}
+    editable
+  />
+</CodeSample>,
+
 #### Import
-\`\`\`jsx
+
+```jsx
 import BlockImageShard from "@fa-repo/shard-editor/dist/shards/block-image";
 import "@fa-repo/shard-editor/dist/shards/block-image.css";
-\`\`\`
+```
 
 #### Input schema
 
-\`\`\`jsx
+```jsx
 const source = [
   {
     id: 0,
@@ -66,7 +54,7 @@ const source = [
     aspectRatio: { width: 1824, height: 746 }
   }
 ];
-\`\`\`
+```
 
 | Name        | Type   | Required | Description                                                    |
 |-------------|--------|----------|----------------------------------------------------------------|
@@ -80,7 +68,7 @@ const source = [
 
 #### Source code example
 
-\`\`\`jsx
+```jsx
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -127,8 +115,4 @@ ReactDOM.render(
   />,
   root
 );
-\`\`\`
-`}
-  />
-];
-export default GetStartedPage;
+```

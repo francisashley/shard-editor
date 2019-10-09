@@ -1,57 +1,45 @@
-import React from "react";
-import ShardDocsCodeExampleShard from "@fa-repo/shard-docs/dist/shards/code-example-shard";
-import ShardDocsMarkdownShard from "@fa-repo/shard-docs/dist/shards/markdown-shard";
+import CodeSample from "@fa-repo/shard-docs/dist/shards/code-sample";
 import ShardEditor from "@fa-repo/shard-editor";
 import NavShard from "@fa-repo/shard-editor/dist/shards/nav";
-import "@fa-repo/shard-editor/dist/shards/nav.css";
 
-/**
- * Nav shard
- */
-
-const GetStartedPage = [
-  <ShardDocsMarkdownShard
-    markdown={`
 # NavShard
 Renders a navigation menu.
 
 #### Preview
-`}
-  />,
-  <ShardDocsCodeExampleShard className="markdown-shard-code-example">
-    <ShardEditor
-      editable
-      source={[
-        {
-          id: 0,
-          type: "nav",
-          items: [
-            { type: "link", text: "Gear", link: "/gear" },
-            { type: "symlink", id: 12 },
-            { type: "link", text: "Accomodation", link: "/accomodation", active: true },
-            { type: "divider", text: " | " },
-            { type: "external", text: "Resources", link: "https://en.wikipedia.org" }
-          ],
-          symlinks: [
-            { id: 0, text: "Itinerary", link: "/itinerary" },
-            { id: 1, text: "Gear", link: "/gear" }
-          ]
-        }
-      ]}
-      shards={[
-        { type: "nav", shard: NavShard, builder: ({ id, type }) => ({ id, type, items: [] }) }
-      ]}
-      inserters={[{ type: "nav", label: "Nav" }]}
-    />
-  </ShardDocsCodeExampleShard>,
 
-  <ShardDocsMarkdownShard
-    markdown={`
+<CodeSample className="markdown-shard-code-example">
+  <ShardEditor
+    editable
+    source={[
+      {
+        id: 0,
+        type: "nav",
+        items: [
+          { type: "link", text: "Gear", link: "/gear" },
+          { type: "symlink", id: 12 },
+          { type: "link", text: "Accomodation", link: "/accomodation", active: true },
+          { type: "divider", text: " | " },
+          { type: "external", text: "Resources", link: "https://en.wikipedia.org" }
+        ],
+        symlinks: [
+          { id: 0, text: "Itinerary", link: "/itinerary" },
+          { id: 1, text: "Gear", link: "/gear" }
+        ]
+      }
+    ]}
+    shards={[
+      { type: "nav", shard: NavShard, builder: ({ id, type }) => ({ id, type, items: [] }) }
+    ]}
+    inserters={[{ type: "nav", label: "Nav" }]}
+  />
+</CodeSample>
+
 #### Import
-\`\`\`jsx
+
+```jsx
 import NavShard from "@fa-repo/shard-editor/dist/shards/nav";
 import "@fa-repo/shard-editor/dist/shards/nav.css";
-\`\`\`
+```
 
 #### Input schema
 
@@ -68,7 +56,7 @@ import "@fa-repo/shard-editor/dist/shards/nav.css";
 
 #### Source code example
 
-\`\`\`jsx
+```jsx
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -119,24 +107,22 @@ ReactDOM.render(
   />,
   root
 );
-\`\`\`
+```
 
 #### Example with custom item renderers
-`}
-  />,
 
-  <ShardDocsCodeExampleShard
-    className="markdown-shard-code-example"
-    sourceCode={`
+<CodeSample
+  className="markdown-shard-code-example"
+  sourceCode={`
 import React from "react";
 import ReactDOM from "react-dom";
-
+\n
 import ShardEditor from "@fa-repo/shard-editor";
 import "@fa-repo/shard-editor";
-
+\n
 import NavShard from "@fa-repo/shard-editor/dist/shards/nav";
 import "@fa-repo/shard-editor/dist/shards/nav.css";
-
+\n
 const source = [
   {
     id: 0,
@@ -155,42 +141,41 @@ const source = [
     }
   }
 ];
-
+\n
 const shards = [
   { type: "nav", shard: NavShard }
 ];
-
+\n
 ReactDOM.render(<ShardEditor source={source} shards={shards} />, root);
 `}
-  >
-    <ShardEditor
-      source={[
-        {
-          id: 0,
-          type: "nav",
-          items: [{ type: "link", text: "Gear", link: "/gear" }],
-          renderers: {
-            link: ({ item }) => {
-              return (
-                <div style={{ background: "red" }}>
-                  <a style={{ color: "gold", padding: "10px" }} href={item.link}>
-                    {item.text}
-                  </a>
-                </div>
-              );
-            }
+>
+  <ShardEditor
+    source={[
+      {
+        id: 0,
+        type: "nav",
+        items: [{ type: "link", text: "Gear", link: "/gear" }],
+        renderers: {
+          link: ({ item }) => {
+            return (
+              <div style={{ background: "red" }}>
+                <a style={{ color: "gold", padding: "10px" }} href={item.link}>
+                  {item.text}
+                </a>
+              </div>
+            );
           }
         }
-      ]}
-      shards={[{ type: "nav", shard: NavShard }]}
-    />
-  </ShardDocsCodeExampleShard>,
-  <ShardDocsMarkdownShard
-    markdown={`
+      }
+    ]}
+    shards={[{ type: "nav", shard: NavShard }]}
+  />
+</CodeSample>
+
 ## Link item
 Renders an anchor.
 
-\`\`\`jsx
+```jsx
 const source = [
   {
     id: 0,
@@ -200,7 +185,7 @@ const source = [
     ],
   }
 ];
-\`\`\`
+```
 
 | Name      | Type   | Required  | Description                                             |
 |-----------|--------|-----------|---------------------------------------------------------|
@@ -212,7 +197,7 @@ const source = [
 ## Symbolic link item
 Symlink is different to \`link\` in that users are offered a whitelisted selection of pages (from the symlinks array) to pick from instead of raw input fields. Objects in the symlinks array use the \`link\` schema.
 
-\`\`\`jsx
+```jsx
 const source = [
   {
     id: 0,
@@ -223,7 +208,7 @@ const source = [
     symlinks: [{ id: 0, text: "Itinerary", link: "/itinerary" }]
   }
 ];
-\`\`\`
+```
 
 | Name      | Type   | Required  | Description                                                     |
 |-----------|--------|-----------|-----------------------------------------------------------------|
@@ -234,7 +219,7 @@ const source = [
 ## External link item
 Renders a link that opens a new tab.
 
-\`\`\`jsx
+```jsx
 const source = [
   {
     id: 0,
@@ -244,7 +229,7 @@ const source = [
     ]
   }
 ];
-\`\`\`
+```
 
 | Name      | Type   | Required  | Description                                                     |
 |-----------|--------|-----------|-----------------------------------------------------------------|
@@ -256,7 +241,7 @@ const source = [
 ## Divider item
 Renders a divider.
 
-\`\`\`jsx
+```jsx
 const source = [
   {
     id: 0,
@@ -266,13 +251,9 @@ const source = [
     ]
   }
 ];
-\`\`\`
+```
 
 | Name      | Type   | Required  | Description                                                     |
 |-----------|--------|-----------|-----------------------------------------------------------------|
 | type      | string | required  | Set to "divider".                                               |
 | text	    | string | required  | Any string you want.                                            |
-`}
-  />
-];
-export default GetStartedPage;

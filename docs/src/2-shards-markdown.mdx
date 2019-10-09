@@ -1,50 +1,40 @@
-import React from "react";
-import ShardDocsCodeExampleShard from "@fa-repo/shard-docs/dist/shards/code-example-shard";
-import ShardDocsMarkdownShard from "@fa-repo/shard-docs/dist/shards/markdown-shard";
+import CodeSample from "@fa-repo/shard-docs/dist/shards/code-sample";
 import ShardEditor from "@fa-repo/shard-editor";
 import MarkdownShard from "@fa-repo/shard-editor/dist/shards/markdown";
 
-/**
- * Markdown shard
- */
 
-const GetStartedPage = [
-  <ShardDocsMarkdownShard
-    markdown={`
 # MarkdownShard
 Renders [markdown](https://www.markdownguide.org) as html.
 
 #### Preview
-`}
-  />,
-  <ShardDocsCodeExampleShard className="markdown-shard-code-example">
-    <ShardEditor
-      editable
-      source={[
-        {
-          id: 0,
-          type: "markdown",
-          markdown: `##### 🍫 CONFECTIONARY:
+
+<CodeSample className="markdown-shard-code-example">
+  <ShardEditor
+    editable
+    source={[
+      {
+        id: 0,
+        type: "markdown",
+        markdown: `##### 🍫 CONFECTIONARY:
 Infantemque valido non quique mora Lemnos? Non *pulsa greges* bella mihi forma, et passa carpsere, Iunonigenaeque. Hylactor semina suae omnibus census carinae, ex cervos crimine cadit. Cecidisse *retractant*, flammaeque alite: fuga artus haeret positi si tendebam. Solis poenam hinc vincat deceant antiqua alter regia habitus fratrisque nomine moenia nunc mihi.`
-        }
-      ]}
-      shards={[
-        {
-          type: "markdown",
-          shard: MarkdownShard,
-          builder: ({ id, type }) => ({ id, type, markdown: "" })
-        }
-      ]}
-      inserters={[{ type: "markdown", label: "Markdown" }]}
-    />
-  </ShardDocsCodeExampleShard>,
-  <ShardDocsMarkdownShard
-    markdown={`
+      }
+    ]}
+    shards={[
+      {
+        type: "markdown",
+        shard: MarkdownShard,
+        builder: ({ id, type }) => ({ id, type, markdown: "" })
+      }
+    ]}
+    inserters={[{ type: "markdown", label: "Markdown" }]}
+  />
+</CodeSample>
+
 #### Import
-\`\`\`jsx
+```jsx
 import MarkdownShard from "@fa-repo/shard-editor/dist/shards/markdown";
 import "@fa-repo/shard-editor/dist/shards/markdown.css";
-\`\`\`
+```
 
 #### Input schema
 | Name     | Type   |  Required | Description                                                      |
@@ -55,7 +45,7 @@ import "@fa-repo/shard-editor/dist/shards/markdown.css";
 
 #### Source code example
 
-\`\`\`jsx
+```jsx
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -99,8 +89,4 @@ ReactDOM.render(
   />,
   root
 );
-\`\`\`
-`}
-  />
-];
-export default GetStartedPage;
+```

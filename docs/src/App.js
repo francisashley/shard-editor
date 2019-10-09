@@ -1,96 +1,110 @@
 import React from "react";
 import ShardDocs from "@fa-repo/shard-docs";
+import CodeBlock from "@fa-repo/shard-docs/dist/renderers/codeblock";
+import { MDXProvider } from "@mdx-js/react";
 
 // Introduction
-import getStarted from "./pages/1-introduction-get-started";
-import createAShard from "./pages/1-introduction-create-a-shard";
+import GetStarted from "./1-introduction-get-started.mdx";
+import BuildAShard from "./1-introduction-build-a-shard.mdx";
 
 // Bundled shards
-import blockImageShard from "./pages/2-shards-block-image";
-import blogHeaderShard from "./pages/2-shards-blog-header";
-import markdownShard from "./pages/2-shards-markdown";
-import navShard from "./pages/2-shards-nav";
+import BlockImageShard from "./2-shards-block-image.mdx";
+import BlogHeaderShard from "./2-shards-blog-header.mdx";
+import MarkdownShard from "./2-shards-markdown.mdx";
+import NavShard from "./2-shards-nav.mdx";
 
 // API reference
-import shardEditorReference from "./pages/3-reference-shard-editor";
-import baseshardReference from "./pages/3-reference-base-shard";
+import ShardEditorReference from "./3-reference-shard-editor.mdx";
+import BaseshardReference from "./3-reference-base-shard.mdx";
 
 // API resources
-import sourceObjectResource from "./pages/4-resources-source-object";
-import inserterObjectResource from "./pages/4-resources-inserter-object";
-import shardObjectResource from "./pages/4-resources-shard-object";
+import SourceObjectResource from "./4-resources-source-object.mdx";
+import InserterObjectResource from "./4-resources-inserter-object.mdx";
+import ShardObjectResource from "./4-resources-shard-object.mdx";
 
 // Examples
-import ControlledExample from "./pages/5-examples-controlled";
-import UncontrolledExample from "./pages/5-examples-uncontrolled";
+import ControlledExample from "./5-examples-controlled.mdx";
+import UncontrolledExample from "./5-examples-uncontrolled.mdx";
 
 import "./App.scss";
-import "@fa-repo/shard-editor/dist/shard-editor.css";
 import "@fa-repo/shard-docs/dist/shard-docs.css";
-import "@fa-repo/shard-docs/dist/shards/section-shard.css";
-import "@fa-repo/shard-docs/dist/shards/markdown-shard.css";
-import "@fa-repo/shard-docs/dist/shards/code-example-shard.css";
+import "@fa-repo/shard-docs/dist/shards/section.css";
+import "@fa-repo/shard-docs/dist/shards/code-sample.css";
+import "@fa-repo/shard-editor/dist/shard-editor.css";
+import "@fa-repo/shard-editor/dist/base-shard.css";
+import "@fa-repo/shard-editor/dist/shards/block-image.css";
+import "@fa-repo/shard-editor/dist/shards/blog-header.css";
 import "@fa-repo/shard-editor/dist/shards/markdown.css";
+import "@fa-repo/shard-editor/dist/shards/nav.css";
 
 /**
  * App
  */
 
+const components = {
+  pre: props => {
+    if (props?.children?.props?.mdxType === "code") {
+      return props.children;
+    } else {
+      return <pre {...props} />;
+    }
+  },
+  code: CodeBlock
+};
+
 const App = props => (
-  <>
-    <ShardDocs
-      title="ShardEditor docs"
-      description="An extendable engine for presenting your content your way."
-      source={[
-        // { page: "Scratch pad", composition: scratchPad },
-        {
-          group: "Introduction",
-          pages: [
-            { page: "Get started", composition: getStarted },
-            { page: "Create a shard", composition: createAShard }
-          ]
-        },
-
-        {
-          group: "Bundled shards",
-          pages: [
-            { page: "<BlockImageShard />", composition: blockImageShard },
-            { page: "<BlogHeaderShard />", composition: blogHeaderShard },
-            { page: "<MarkdownShard />", composition: markdownShard },
-            { page: "<NavShard />", composition: navShard }
-          ]
-        },
-
-        {
-          group: "API reference",
-          pages: [
-            { page: "<ShardEditor />", composition: shardEditorReference },
-            { page: "<BaseShard />", composition: baseshardReference }
-          ]
-        },
-
-        {
-          group: "API objects",
-          pages: [
-            { page: "SourceObject", composition: sourceObjectResource },
-            { page: "InserterObject", composition: inserterObjectResource },
-            { page: "ShardObject", composition: shardObjectResource }
-          ]
-        },
-        {
-          group: "Examples",
-          pages: [
-            { page: "Uncontrolled editor", composition: [<UncontrolledExample />] },
-            { page: "Controlled editor", composition: [<ControlledExample />] }
-          ]
-        },
-        {
-          group: "Links",
-          pages: [{ external: "Github", link: "https://github.com/fa-repo/shard-editor" }]
-        }
-      ]}
-    />
-  </>
+  <MDXProvider components={components}>
+    <>
+      <ShardDocs
+        title="ShardEditor docs"
+        description="An extendable engine for presenting your content your way."
+        source={[
+          {
+            title: "Introduction",
+            folder: [
+              { title: "Get started", document: <GetStarted /> },
+              { title: "Build a shard", document: <BuildAShard /> }
+            ]
+          },
+          {
+            title: "Bundled shards",
+            folder: [
+              { title: "<BlockImageShard />", document: <BlockImageShard /> },
+              { title: "<BlogHeaderShard />", document: <BlogHeaderShard /> },
+              { title: "<MarkdownShard />", document: <MarkdownShard /> },
+              { title: "<NavShard />", document: <NavShard /> }
+            ]
+          },
+          {
+            title: "API reference",
+            folder: [
+              { title: "<ShardEditor />", document: <ShardEditorReference /> },
+              { title: "<BaseShard />", document: <BaseshardReference /> }
+            ]
+          },
+          {
+            title: "API objects",
+            folder: [
+              { title: "SourceObject", document: <SourceObjectResource /> },
+              { title: "InserterObject", document: <InserterObjectResource /> },
+              { title: "ShardObject", document: <ShardObjectResource /> }
+            ]
+          },
+          {
+            title: "Examples",
+            folder: [
+              { title: "Uncontrolled editor", document: <UncontrolledExample /> },
+              { title: "Controlled editor", document: <ControlledExample /> }
+            ]
+          },
+          {
+            title: "Links",
+            folder: [{ title: "Github", externalLink: "https://github.com/fa-repo/shard-editor" }]
+          }
+        ]}
+      />
+    </>
+  </MDXProvider>
 );
 
 App.propTypes = {};
