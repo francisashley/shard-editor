@@ -1,23 +1,12 @@
-import React from "react";
-import ShardDocsMarkdownShard from "@fa-repo/shard-docs/dist/shards/markdown-shard";
-import "@fa-repo/shard-editor/dist/shards/block-image.css";
-
-/**
- * BaseShard reference
- */
-
-const BaseShardReferencePage = [
-  <ShardDocsMarkdownShard
-    markdown={`
 # BaseShard
 
 A component with a pluggable API for developing custom shards.
 
 #### Import
-\`\`\`jsx
+```jsx
 import BaseShard from "@fa-repo/shard-editor/dist/base-shard";
 import "@fa-repo/shard-editor/dist/base-shard.css";
-\`\`\`
+```
 
 #### BaseShard properties
 
@@ -28,13 +17,17 @@ import "@fa-repo/shard-editor/dist/base-shard.css";
 | editor    | function  | sometimes | A form the user can access in editable mode to update the sourceObject.                                                               |
 
 #### BaseShard prop: renderer function parameters
+
 This function requires that a react component is returned.
+
 | Name         | Type      | Description                                                           |
 |--------------|-----------|-----------------------------------------------------------------------|
 | sourceObject | object    | A SourceObject                                                        |
 
 #### BaseShard prop: editor function parameters
+
 This function requires that a react component is returned.
+
 | Name         | Type      | Description                                                           |
 |--------------|-----------|-----------------------------------------------------------------------|
 | sourceObject | object    | A SourceObject                                                        |
@@ -44,7 +37,7 @@ This function requires that a react component is returned.
 
 #### Usage example
 
-\`\`\`jsx
+```jsx
 import BaseShard from "@fa-repo/shard-editor/dist/base-shard";
 import "@fa-repo/shard-editor/dist/base-shard.css";
 
@@ -68,8 +61,4 @@ const MarkdownShard = props => {
     />
   )
 }
-\`\`\`
-`}
-  />
-];
-export default BaseShardReferencePage;
+```

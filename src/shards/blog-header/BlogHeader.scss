@@ -12,8 +12,10 @@
 
   .blog-header-shard-title {
     line-height: 1.2;
-    margin: 12px 0;
+    margin: 12px 0 !important;
     cursor: text;
+    padding: 0;
+    border: none;
   }
 
   .blog-header-shard-meta {

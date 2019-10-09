@@ -1,26 +1,14 @@
-import React from "react";
-import ShardDocsMarkdownShard from "@fa-repo/shard-docs/dist/shards/markdown-shard";
-import "@fa-repo/shard-editor/dist/shards/block-image.css";
-
-/**
- * ShardEditor reference
- */
-
-const ShardEditorReferencePage = [
-  <ShardDocsMarkdownShard
-    markdown={`
 # ShardEditor
 
 The component that ties everything together.
 
 #### Import
-\`\`\`jsx
+```jsx
 import ShardEditor from "@fa-repo/shard-editor";
 import "@fa-repo/shard-editor/dist/shard-editor.css";
-\`\`\`
+```
 
 #### ShardEditor properties
-
 
 | Name           | Type     | Description                                             |
 |----------------|----------|---------------------------------------------------------|
@@ -54,7 +42,7 @@ import "@fa-repo/shard-editor/dist/shard-editor.css";
 
 #### Usage example
 
-\`\`\`jsx
+```jsx
 import ShardEditor from "@fa-repo/shard-editor";
 import "@fa-repo/shard-editor/dist/shard-editor.css";
 
@@ -95,8 +83,4 @@ class Component extends React.Component {
     );
   }
 }
-\`\`\`
-`}
-  />
-];
-export default ShardEditorReferencePage;
+```

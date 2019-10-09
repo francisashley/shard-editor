@@ -6,8 +6,9 @@ const VideoShard = props => {
   return (
     <BaseShard
       type="youtube"
-      renderer={sourceObject => {
+      renderer={({ sourceObject }) => {
         const { height = 315, width = 560, videoId = "" } = sourceObject;
+
         return (
           <iframe
             width={width}
