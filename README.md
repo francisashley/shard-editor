@@ -53,7 +53,7 @@ export default () => {
 ```
 Results in:
 
-![Usage example](./example.png "Usage example")
+![Usage example](./example.jpg "Usage example")
 
 ## License
 
