@@ -57,4 +57,4 @@ Results in:
 
 ## License
 
-mit © [@fa-repo](https://github.com/@fa-repo)
+MIT
