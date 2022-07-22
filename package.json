@@ -17,7 +17,7 @@
     "build": "npx rollup -c",
     "watch": "npx rollup -c -w",
     "prepare": "npx npm run build",
-    "predeploy": "cd docs && npx npm install && npm run production",
+    "predeploy": "cd docs && npx npm install && npm run build",
     "deploy": "npx rimraf docs/public/*.map && npx gh-pages -d docs/public",
     "analyse": "npm run build && npx source-map-explorer ./dist/shard-editor.js"
   },
