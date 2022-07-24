@@ -1,5 +1,5 @@
-import CodeSample from "@fa-repo/shard-docs/dist/shards/CodeSampleShard";
 import ShardEditor from "@fa-repo/shard-editor";
+import { CodeSampleShard } from "@fa-repo/shard-docs";
 import MarkdownShard from "@fa-repo/shard-editor/dist/shards/markdown";
 
 
@@ -8,7 +8,7 @@ Renders [markdown](https://www.markdownguide.org) as html.
 
 #### Preview
 
-<CodeSample className="markdown-shard-code-example">
+<CodeSampleShard className="markdown-shard-code-example">
   <ShardEditor
     editable
     source={[
@@ -28,7 +28,7 @@ Infantemque valido non quique mora Lemnos? Non *pulsa greges* bella mihi forma, 
     ]}
     inserters={[{ type: "markdown", label: "Markdown" }]}
   />
-</CodeSample>
+</CodeSampleShard>
 
 #### Import
 ```jsx

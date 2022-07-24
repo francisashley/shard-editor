@@ -1,18 +1,18 @@
 import ShardEditor from "@fa-repo/shard-editor";
-import CodeSample from "@fa-repo/shard-docs/dist/shards/CodeSampleShard";
+import { CodeSampleShard } from "@fa-repo/shard-docs";
 import YoutubeShard from "./YoutubeShard";
 
 ## Build a shard
 
 For this guide, we're going to build a shard that renders a youtube video.`}
 
-<CodeSample className="markdown-shard-code-example">
+<CodeSampleShard className="markdown-shard-code-example">
   <ShardEditor
     editable
     source={[{ id: 0, type: "youtube", videoId: "eY52Zsg-KVI", height: 315, width: 560 }]}
     shards={[{ type: "youtube", shard: YoutubeShard }]}
   />
-</CodeSample>
+</CodeSampleShard>
 
 #### First let's describe the source object so that we know what we're working with
 
@@ -209,7 +209,7 @@ const App = props => {
 
 #### and voilà
 
-<CodeSample className="markdown-shard-code-example">
+<CodeSampleShard className="markdown-shard-code-example">
   <ShardEditor
     editable
     source={[
@@ -223,4 +223,4 @@ const App = props => {
     ]}
     shards={[{ type: "youtube", shard: YoutubeShard }]}
   />
-</CodeSample>
+</CodeSampleShard>

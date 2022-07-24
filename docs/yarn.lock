@@ -970,10 +970,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
   integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
 
-"@fa-repo/shard-docs@^5.0.8":
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/@fa-repo/shard-docs/-/shard-docs-5.0.8.tgz#77369fdb67b6577ede7adec317d2cf646eba167c"
-  integrity sha512-BWHFc7qdAt1YJP0HVMJlpy1193kKAHJl+itkUcm5P0ces0BUIzvfDWyCTiZYp9Skv8OJ2mfT9o/LueWjarA72g==
+"@fa-repo/shard-docs@^5.0.9":
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/@fa-repo/shard-docs/-/shard-docs-5.0.9.tgz#24ca5eb347ad5e74694ab4a01a6b056cbe7a4179"
+  integrity sha512-Jcmig2e4UogUmyucpsh17SxbXDh+QaUPImLv0RK6TnUPLV1OIT49m+QxYpoAv98zDBQ/Gjc+BZ/zGzjLWEjxsA==
 
 "@fa-repo/shard-editor@file:..":
   version "0.1.0"

@@ -1,4 +1,4 @@
-import CodeSample from "@fa-repo/shard-docs/dist/shards/CodeSampleShard";
+import { CodeSampleShard } from "@fa-repo/shard-docs";
 import ShardEditor from "@fa-repo/shard-editor";
 import NavShard from "@fa-repo/shard-editor/dist/shards/nav";
 
@@ -7,7 +7,7 @@ Renders a navigation menu.
 
 #### Preview
 
-<CodeSample className="markdown-shard-code-example">
+<CodeSampleShard className="markdown-shard-code-example">
   <ShardEditor
     editable
     source={[
@@ -32,7 +32,7 @@ Renders a navigation menu.
     ]}
     inserters={[{ type: "nav", label: "Nav" }]}
   />
-</CodeSample>
+</CodeSampleShard>
 
 #### Import
 
@@ -111,7 +111,7 @@ ReactDOM.render(
 
 #### Example with custom item renderers
 
-<CodeSample
+<CodeSampleShard
   className="markdown-shard-code-example"
   sourceCode={`
 import React from "react";
@@ -170,7 +170,7 @@ ReactDOM.render(<ShardEditor source={source} shards={shards} />, root);
     ]}
     shards={[{ type: "nav", shard: NavShard }]}
   />
-</CodeSample>
+</CodeSampleShard>
 
 ## Link item
 Renders an anchor.

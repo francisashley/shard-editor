@@ -1,5 +1,5 @@
 import ShardEditor from "@fa-repo/shard-editor";
-import CodeSample from "@fa-repo/shard-docs/dist/shards/CodeSampleShard";
+import { CodeSampleShard } from "@fa-repo/shard-docs";
 import BlockImageShard from "@fa-repo/shard-editor/dist/shards/block-image";
 
 # BlockImageShard
@@ -7,7 +7,7 @@ Renders a block image.
 
 #### Preview
 
-<CodeSample className="markdown-shard-code-example">
+<CodeSampleShard className="markdown-shard-code-example">
   <ShardEditor
     source={[
       {
@@ -33,7 +33,7 @@ Renders a block image.
     inserters={[{ type: "block-image", label: "Block Image" }]}
     editable
   />
-</CodeSample>,
+</CodeSampleShard>,
 
 #### Import
 

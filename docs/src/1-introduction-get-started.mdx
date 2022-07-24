@@ -1,5 +1,5 @@
 import ShardEditor from "@fa-repo/shard-editor";
-import CodeSample from "@fa-repo/shard-docs/dist/shards/CodeSampleShard";
+import { CodeSampleShard } from "@fa-repo/shard-docs";
 import MarkdownShard from "@fa-repo/shard-editor/dist/shards/markdown";
 
 ### Install
@@ -66,12 +66,12 @@ ReactDOM.render(<ShardEditor source={source} shards={shards} />, root);
 
 and voilà
 
-<CodeSample className="markdown-shard-code-example" noShadow>
+<CodeSampleShard className="markdown-shard-code-example" noShadow>
   <ShardEditor
     source={[{ id: 0, type: "markdown", markdown: "## Hello world" }]}
     shards={[{ type: "markdown", shard: MarkdownShard }]}
   />
-</CodeSample>
+</CodeSampleShard>
 
 ## Edit your content
 
@@ -98,13 +98,13 @@ const shards = [
 ReactDOM.render(<ShardEditor source={source} shards={shards} editable />, root);
 ```
 
-<CodeSample className="markdown-shard-code-example" noShadow>
+<CodeSampleShard className="markdown-shard-code-example" noShadow>
   <ShardEditor
     source={[{ id: 0, type: "markdown", markdown: "## Hello world" }]}
     shards={[{ type: "markdown", shard: MarkdownShard }]}
     editable
   />
-</CodeSample>
+</CodeSampleShard>
 
 However, **creating** shards requires some configuration. You can go about this in two ways. First you can go down the controlled route by using methods exposed by \`getEditor\` or you could go uncontrolled by configuring the built-in inserter menu. While each differ in approach, both require that a builder function is provided.
 
@@ -171,7 +171,7 @@ ReactDOM.render(
 
 and voilà
 
-<CodeSample className="markdown-shard-code-example" noShadow>
+<CodeSampleShard className="markdown-shard-code-example" noShadow>
   <ShardEditor
     source={[{ id: 0, type: "markdown", markdown: "## Hello world" }]}
     shards={[
@@ -184,4 +184,4 @@ and voilà
     inserters={[{ type: "markdown", label: "Markdown" }]}
     editable
   />
-</CodeSample>
+</CodeSampleShard>

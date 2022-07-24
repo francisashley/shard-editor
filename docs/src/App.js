@@ -1,6 +1,6 @@
 import React from "react";
 import ShardDocs from "@fa-repo/shard-docs";
-import CodeBlock from "@fa-repo/shard-docs/dist/renderers/codeblock";
+import CodeBlock from "@fa-repo/shard-docs/dist/renderers/CodeBlockRenderer";
 import { MDXProvider } from "@mdx-js/react";
 
 // Introduction
@@ -27,8 +27,8 @@ import ControlledExample from "./5-examples-controlled.mdx";
 import UncontrolledExample from "./5-examples-uncontrolled.mdx";
 
 import "./App.scss";
-import "@fa-repo/shard-docs/dist/shard-docs.css";
-import "@fa-repo/shard-docs/dist/shards/section.css";
+import "@fa-repo/shard-docs/dist/index.css";
+import "@fa-repo/shard-docs/dist/shards/SectionShard.css";
 import "@fa-repo/shard-docs/dist/shards/CodeSampleShard.css";
 import "@fa-repo/shard-editor/dist/shard-editor.css";
 import "@fa-repo/shard-editor/dist/base-shard.css";
@@ -58,55 +58,55 @@ const App = props => (
       <ShardDocs
         title="ShardEditor docs"
         description="An extendable engine for presenting your content your way."
-        source={[
+        content={[
           {
-            type: 'folder',
-            title: "Introduction",
-            folder: [
-              { type: 'document', title: "Get started", document: <GetStarted /> },
-              { type: 'document', title: "Build a shard", document: <BuildAShard /> }
+            type: 'category',
+            name: "Introduction",
+            items: [
+              { type: 'document', name: "Get started", document: <GetStarted /> },
+              { type: 'document', name: "Build a shard", document: <BuildAShard /> }
             ]
           },
           {
-            type: 'folder',
-            title: "Bundled shards",
-            folder: [
-              { type: 'document', title: "<BlockImageShard />", document: <BlockImageShard /> },
-              { type: 'document', title: "<BlogHeaderShard />", document: <BlogHeaderShard /> },
-              { type: 'document', title: "<MarkdownShard />", document: <MarkdownShard /> },
-              { type: 'document', title: "<NavShard />", document: <NavShard /> }
+            type: 'category',
+            name: "Bundled shards",
+            items: [
+              { type: 'document', name: "<BlockImageShard />", document: <BlockImageShard /> },
+              { type: 'document', name: "<BlogHeaderShard />", document: <BlogHeaderShard /> },
+              { type: 'document', name: "<MarkdownShard />", document: <MarkdownShard /> },
+              { type: 'document', name: "<NavShard />", document: <NavShard /> }
             ]
           },
           {
-            type: 'folder',
-            title: "API reference",
-            folder: [
-              { type: 'document', title: "<ShardEditor />", document: <ShardEditorReference /> },
-              { type: 'document', title: "<BaseShard />", document: <BaseshardReference /> }
+            type: 'category',
+            name: "API reference",
+            items: [
+              { type: 'document', name: "<ShardEditor />", document: <ShardEditorReference /> },
+              { type: 'document', name: "<BaseShard />", document: <BaseshardReference /> }
             ]
           },
           {
-            type: 'folder',
-            title: "API objects",
-            folder: [
-              { type: 'document', title: "SourceObject", document: <SourceObjectResource /> },
-              { type: 'document', title: "InserterObject", document: <InserterObjectResource /> },
-              { type: 'document', title: "ShardObject", document: <ShardObjectResource /> }
+            type: 'category',
+            name: "API objects",
+            items: [
+              { type: 'document', name: "SourceObject", document: <SourceObjectResource /> },
+              { type: 'document', name: "InserterObject", document: <InserterObjectResource /> },
+              { type: 'document', name: "ShardObject", document: <ShardObjectResource /> }
             ]
           },
           {
-            type: 'folder',
-            title: "Examples",
-            folder: [
-              { type: 'document', title: "Uncontrolled editor", document: <UncontrolledExample /> },
-              { type: 'document', title: "Controlled editor", document: <ControlledExample /> }
+            type: 'category',
+            name: "Examples",
+            items: [
+              { type: 'document', name: "Uncontrolled editor", document: <UncontrolledExample /> },
+              { type: 'document', name: "Controlled editor", document: <ControlledExample /> }
             ]
           },
           {
-            type: 'folder',
-            title: "Links",
-            folder: [
-              { type: 'document', title: "Github", externalLink: "https://github.com/fa-repo/shard-editor" }
+            type: 'category',
+            name: "Links",
+            items: [
+              { type: 'link', name: "Github", url: "https://github.com/fa-repo/shard-editor", external: true }
             ]
           }
         ]}

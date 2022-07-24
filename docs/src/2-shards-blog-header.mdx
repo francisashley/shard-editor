@@ -1,13 +1,13 @@
-import CodeSample from "@fa-repo/shard-docs/dist/shards/CodeSampleShard";
-import BlogHeaderShard from "@fa-repo/shard-editor/dist/shards/blog-header";
 import ShardEditor from "@fa-repo/shard-editor";
+import BlogHeaderShard from "@fa-repo/shard-editor/dist/shards/blog-header";
+import { CodeSampleShard } from "@fa-repo/shard-docs";
 
 # BlogHeaderShard
 Renders blog post info.
 
 #### Preview
 
-<CodeSample className="markdown-shard-code-example">
+<CodeSampleShard className="markdown-shard-code-example">
   <ShardEditor
     editable
     source={[
@@ -46,7 +46,7 @@ Renders blog post info.
     ]}
     inserters={[{ type: "blog-header", label: "Blog header" }]}
   />
-</CodeSample>
+</CodeSampleShard>
 
 #### Import
 ```jsx
