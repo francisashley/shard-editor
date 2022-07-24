@@ -29,7 +29,7 @@ import UncontrolledExample from "./5-examples-uncontrolled.mdx";
 import "./App.scss";
 import "@fa-repo/shard-docs/dist/shard-docs.css";
 import "@fa-repo/shard-docs/dist/shards/section.css";
-import "@fa-repo/shard-docs/dist/shards/code-sample.css";
+import "@fa-repo/shard-docs/dist/shards/CodeSampleShard.css";
 import "@fa-repo/shard-editor/dist/shard-editor.css";
 import "@fa-repo/shard-editor/dist/base-shard.css";
 import "@fa-repo/shard-editor/dist/shards/block-image.css";
@@ -60,46 +60,54 @@ const App = props => (
         description="An extendable engine for presenting your content your way."
         source={[
           {
+            type: 'folder',
             title: "Introduction",
             folder: [
-              { title: "Get started", document: <GetStarted /> },
-              { title: "Build a shard", document: <BuildAShard /> }
+              { type: 'document', title: "Get started", document: <GetStarted /> },
+              { type: 'document', title: "Build a shard", document: <BuildAShard /> }
             ]
           },
           {
+            type: 'folder',
             title: "Bundled shards",
             folder: [
-              { title: "<BlockImageShard />", document: <BlockImageShard /> },
-              { title: "<BlogHeaderShard />", document: <BlogHeaderShard /> },
-              { title: "<MarkdownShard />", document: <MarkdownShard /> },
-              { title: "<NavShard />", document: <NavShard /> }
+              { type: 'document', title: "<BlockImageShard />", document: <BlockImageShard /> },
+              { type: 'document', title: "<BlogHeaderShard />", document: <BlogHeaderShard /> },
+              { type: 'document', title: "<MarkdownShard />", document: <MarkdownShard /> },
+              { type: 'document', title: "<NavShard />", document: <NavShard /> }
             ]
           },
           {
+            type: 'folder',
             title: "API reference",
             folder: [
-              { title: "<ShardEditor />", document: <ShardEditorReference /> },
-              { title: "<BaseShard />", document: <BaseshardReference /> }
+              { type: 'document', title: "<ShardEditor />", document: <ShardEditorReference /> },
+              { type: 'document', title: "<BaseShard />", document: <BaseshardReference /> }
             ]
           },
           {
+            type: 'folder',
             title: "API objects",
             folder: [
-              { title: "SourceObject", document: <SourceObjectResource /> },
-              { title: "InserterObject", document: <InserterObjectResource /> },
-              { title: "ShardObject", document: <ShardObjectResource /> }
+              { type: 'document', title: "SourceObject", document: <SourceObjectResource /> },
+              { type: 'document', title: "InserterObject", document: <InserterObjectResource /> },
+              { type: 'document', title: "ShardObject", document: <ShardObjectResource /> }
             ]
           },
           {
+            type: 'folder',
             title: "Examples",
             folder: [
-              { title: "Uncontrolled editor", document: <UncontrolledExample /> },
-              { title: "Controlled editor", document: <ControlledExample /> }
+              { type: 'document', title: "Uncontrolled editor", document: <UncontrolledExample /> },
+              { type: 'document', title: "Controlled editor", document: <ControlledExample /> }
             ]
           },
           {
+            type: 'folder',
             title: "Links",
-            folder: [{ title: "Github", externalLink: "https://github.com/fa-repo/shard-editor" }]
+            folder: [
+              { type: 'document', title: "Github", externalLink: "https://github.com/fa-repo/shard-editor" }
+            ]
           }
         ]}
       />
