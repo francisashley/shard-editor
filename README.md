@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Shard Editor</h1>
   <p>An engine for presenting content your way.</p>
-  <a href="https://skystash.github.io/shard-editor/#/get-started">Read The Docs</a>
+  <a href="https://francisashley.github.io/shard-editor/#/get-started">Read The Docs</a>
 </div>
 
 <hr />
